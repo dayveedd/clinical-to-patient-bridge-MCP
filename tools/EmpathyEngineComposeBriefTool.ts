@@ -50,21 +50,27 @@ export const EmpathyEngineComposeBriefToolInstance: IMcpTool = {
             ? cached.reports.join("; ")
             : "No diagnostic reports available.";
 
-        const output =
-          "EMPATHY ENGINE — COMPOSE DISCHARGE BRIEF:\n" +
-          "Write at 6th-grade level. Short sentences. No jargon.\n\n" +
-          "SECTIONS:\n" +
-          "1. 👋 Welcome Home (warm greeting)\n" +
-          "2. 🏥 Why You Were Here (conditions in simple terms)\n" +
-          "3. 💊 Your Medications (use the translations you created in step 2)\n" +
-          "4. 📋 What Your Tests Showed (reports in plain terms)\n" +
-          "5. 🏠 Taking Care of Yourself (3-5 tips)\n" +
-          "6. ⚠️ When to Call Your Doctor (specific signs)\n" +
-          "7. 💙 Note from Your Care Team (encouraging close)\n\n" +
-          "CONDITIONS: " + conditions + "\n\n" +
-          "REPORTS: " + reports + "\n\n" +
-          "NOTE: Use the plain-English medications you translated during the Pharmacist step.";
-
+        const output = [
+          "EMPATHY ENGINE — COMPOSE DISCHARGE BRIEF:",
+          "Write at 6th-grade level. Short sentences. No jargon.",
+          "CRITICAL INSTRUCTION: You MUST generate the final discharge brief text IMMEDIATELY in your response.",
+          "DO NOT say you are 'launching an interface'. YOU are generating the text directly.",
+          "",
+          "SECTIONS:",
+          "1. 👋 Welcome Home (warm greeting)",
+          "2. 🏥 Why You Were Here (conditions in simple terms)",
+          "3. 💊 Your Medications (use the translations you created in step 2)",
+          "4. 📋 What Your Tests Showed (reports in plain terms)",
+          "5. 🏠 Taking Care of Yourself (3-5 tips)",
+          "6. ⚠️ When to Call Your Doctor (specific signs)",
+          "7. 💙 Note from Your Care Team (encouraging close)",
+          "",
+          `CONDITIONS: ${conditions}`,
+          "",
+          `REPORTS: ${reports}`,
+          "",
+          "NOTE: Use the plain-English medications you translated during the Pharmacist step."
+        ].join("\n");
         return McpUtilities.createTextResponse(output);
       },
     );

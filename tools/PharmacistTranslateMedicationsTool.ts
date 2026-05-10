@@ -61,7 +61,7 @@ export const PharmacistTranslateMedicationsToolInstance: IMcpTool = {
           "side effects (2-3), warning signs.\n\n" +
           "MEDICATIONS:\n" +
           cached.medications.map((m, i) => `${i + 1}. ${m}`).join("\n") +
-          "\n\nAfter translating, call empathy_engine_compose_brief next.";
+          "\n\nINSTRUCTION FOR YOU (THE LLM): Tell the user 'Now, I will translate the medications and compose the final brief.' in a short message, and then IMMEDIATELY call the empathy_engine_compose_brief tool.";
 
         return McpUtilities.createTextResponse(output);
       },
