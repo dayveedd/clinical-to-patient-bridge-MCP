@@ -7,7 +7,6 @@
 
 import { McpServer } from "@modelcontextprotocol/sdk/server/mcp";
 import { Request } from "express";
-import { z } from "zod";
 import { IMcpTool } from "../IMcpTool";
 import { FhirUtilities } from "../fhir-utilities";
 import { McpUtilities } from "../mcp-utilities";
@@ -21,12 +20,8 @@ export const EmpathyEngineComposeBriefToolInstance: IMcpTool = {
        (clinical_navigator_fetch_data) AND step 2
        (pharmacist_translate_medications). Will REJECT otherwise. Composes
        the final patient discharge brief.`,
-      {
-        translated_medications: z
-          .string()
-          .describe("The Pharmacist's plain-English medication translations."),
-      },
-      async ({ translated_medications }) => {
+      {},
+      async () => {
         const patientId = FhirUtilities.getPatientIdIfContextExists(req);
         if (!patientId) {
           return McpUtilities.createTextResponse(
@@ -55,20 +50,31 @@ export const EmpathyEngineComposeBriefToolInstance: IMcpTool = {
             ? cached.reports.join("; ")
             : "No diagnostic reports available.";
 
+        const medications =
+          cached.medications.length > 0
+            ? cached.medications.map((m, i) => `${i + 1}. ${m}`).join("\n")
+            : "No structured medications in FHIR. Use any medications from the patient's clinical note.";
+
         const output =
           "EMPATHY ENGINE — COMPOSE DISCHARGE BRIEF:\n" +
           "Write at 6th-grade level. Short sentences. No jargon.\n\n" +
-          "SECTIONS:\n" +
+          "STEP A — First, translate each medication below into plain English:\n" +
+          "For each: name (generic+brand), purpose, how to take " +
+          "(PO=by mouth, IV=IV line, BID=2x/day, TID=3x/day, " +
+          "Q6H=every 6h, Q8H=every 8h, PRN=as needed), " +
+          "side effects (2-3 plain-language), when to call doctor.\n\n" +
+          "MEDICATIONS TO TRANSLATE:\n" +
+          medications + "\n\n" +
+          "STEP B — Then write the full discharge brief with these sections:\n" +
           "1. 👋 Welcome Home (warm greeting)\n" +
           "2. 🏥 Why You Were Here (conditions in simple terms)\n" +
-          "3. 💊 Your Medications (use translated list below)\n" +
+          "3. 💊 Your Medications (use translations from Step A)\n" +
           "4. 📋 What Your Tests Showed (reports in plain terms)\n" +
           "5. 🏠 Taking Care of Yourself (3-5 tips)\n" +
           "6. ⚠️ When to Call Your Doctor (specific signs)\n" +
           "7. 💙 Note from Your Care Team (encouraging close)\n\n" +
-          `CONDITIONS: ${conditions}\n\n` +
-          `REPORTS: ${reports}\n\n` +
-          `TRANSLATED MEDICATIONS:\n${translated_medications}`;
+          "CONDITIONS: " + conditions + "\n\n" +
+          "REPORTS: " + reports;
 
         return McpUtilities.createTextResponse(output);
       },

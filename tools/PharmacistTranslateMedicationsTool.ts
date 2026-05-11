@@ -39,29 +39,19 @@ export const PharmacistTranslateMedicationsToolInstance: IMcpTool = {
           );
         }
 
-        if (cached.medications.length === 0) {
-          return McpUtilities.createTextResponse(
-            "No structured medications found in FHIR. The Pharmacist will " +
-              "rely on the patient's uploaded clinical note. Check the " +
-              "conversation context for any medication mentions and translate " +
-              "them using these rules:\n" +
-              "PO=by mouth, IV=IV line, BID=twice daily, TID=3x daily, " +
-              "Q6H=every 6h, Q8H=every 8h, PRN=as needed.\n" +
-              "For each med: name, purpose, how to take, side effects, warning signs.\n\n" +
-              "Call empathy_engine_compose_brief next.",
-          );
-        }
-
+        // Medications stay in cache — do NOT return them here.
+        // Returning raw medication data bloats the LLM context and causes
+        // the output token budget to be exhausted before the Empathy Engine
+        // can be called. The Empathy Engine reads medications from cache directly.
+        const medCount = cached.medications.length;
         const output =
-          "PHARMACIST TRANSLATION INSTRUCTIONS:\n" +
-          "Translate each medication below into plain English.\n" +
-          "For each: name (generic+brand), purpose, how to take " +
-          "(PO=by mouth, IV=IV line, BID=2x/day, TID=3x/day, " +
-          "Q6H=every 6h, Q8H=every 8h, PRN=as needed), " +
-          "side effects (2-3), warning signs.\n\n" +
-          "MEDICATIONS:\n" +
-          cached.medications.map((m, i) => `${i + 1}. ${m}`).join("\n") +
-          "\n\nAfter translating, call empathy_engine_compose_brief next.";
+          medCount === 0
+            ? "Pharmacist: No structured medications found in FHIR. " +
+              "The Empathy Engine will use any medication context from the " +
+              "patient's clinical note. Call empathy_engine_compose_brief next."
+            : `Pharmacist: ${medCount} medication(s) staged for translation. ` +
+              "The Empathy Engine will provide translation rules and the " +
+              "medication list. Call empathy_engine_compose_brief next.";
 
         return McpUtilities.createTextResponse(output);
       },
