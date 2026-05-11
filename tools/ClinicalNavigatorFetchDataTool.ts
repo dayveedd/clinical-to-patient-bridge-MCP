@@ -123,7 +123,9 @@ export const ClinicalNavigatorFetchDataToolInstance: IMcpTool = {
             `• ${conditions.length} condition(s) found\n` +
             `• ${medications.length} medication(s) found\n` +
             `• ${reports.length} diagnostic report(s) found\n\n` +
-            "INSTRUCTION FOR YOU (THE LLM): To ensure the user sees progress, you MUST tell the user 'To do this, I need to first fetch the patient\\'s clinical data. Then, I will translate the medications.' in a short message, and then IMMEDIATELY call the pharmacist_translate_medications tool.";
+            (conditions.length + medications.length + reports.length === 0
+              ? "⚠️ No structured FHIR data found. Use the patient's uploaded clinical note from the conversation context instead when calling the Pharmacist and Empathy Engine."
+              : "Data is ready. Call pharmacist_translate_medications next.");
 
           return McpUtilities.createTextResponse(summary);
         } catch (error) {

@@ -2,11 +2,12 @@
 //
 // [Agent 3 of 3] Empathy Engine
 // Reads conditions and reports from the server-side cache (stored by
-// Navigator). Returns composition instructions for the final brief.
-// Taking 0 arguments prevents LLM token exhaustion.
+// Navigator). Accepts the Pharmacist's translated medications as a single
+// short argument. Returns composition instructions for the final brief.
 
 import { McpServer } from "@modelcontextprotocol/sdk/server/mcp";
 import { Request } from "express";
+import { z } from "zod";
 import { IMcpTool } from "../IMcpTool";
 import { FhirUtilities } from "../fhir-utilities";
 import { McpUtilities } from "../mcp-utilities";
@@ -16,12 +17,16 @@ export const EmpathyEngineComposeBriefToolInstance: IMcpTool = {
   registerTool: (server: McpServer, req: Request) => {
     server.tool(
       "empathy_engine_compose_brief",
-      "[STEP 3 — Empathy Engine Agent] MUST be called after BOTH step 1 " +
-        "(clinical_navigator_fetch_data) AND step 2 " +
-        "(pharmacist_translate_medications). Will REJECT otherwise. Composes " +
-        "the final patient discharge brief.",
-      {},
-      async () => {
+      `[STEP 3 — Empathy Engine Agent] MUST be called after BOTH step 1
+       (clinical_navigator_fetch_data) AND step 2
+       (pharmacist_translate_medications). Will REJECT otherwise. Composes
+       the final patient discharge brief.`,
+      {
+        translated_medications: z
+          .string()
+          .describe("The Pharmacist's plain-English medication translations."),
+      },
+      async ({ translated_medications }) => {
         const patientId = FhirUtilities.getPatientIdIfContextExists(req);
         if (!patientId) {
           return McpUtilities.createTextResponse(
@@ -50,27 +55,21 @@ export const EmpathyEngineComposeBriefToolInstance: IMcpTool = {
             ? cached.reports.join("; ")
             : "No diagnostic reports available.";
 
-        const output = [
-          "EMPATHY ENGINE — COMPOSE DISCHARGE BRIEF:",
-          "Write at 6th-grade level. Short sentences. No jargon.",
-          "CRITICAL INSTRUCTION: You MUST generate the final discharge brief text IMMEDIATELY in your response.",
-          "DO NOT say you are 'launching an interface'. YOU are generating the text directly.",
-          "",
-          "SECTIONS:",
-          "1. 👋 Welcome Home (warm greeting)",
-          "2. 🏥 Why You Were Here (conditions in simple terms)",
-          "3. 💊 Your Medications (use the translations you created in step 2)",
-          "4. 📋 What Your Tests Showed (reports in plain terms)",
-          "5. 🏠 Taking Care of Yourself (3-5 tips)",
-          "6. ⚠️ When to Call Your Doctor (specific signs)",
-          "7. 💙 Note from Your Care Team (encouraging close)",
-          "",
-          `CONDITIONS: ${conditions}`,
-          "",
-          `REPORTS: ${reports}`,
-          "",
-          "NOTE: Use the plain-English medications you translated during the Pharmacist step."
-        ].join("\n");
+        const output =
+          "EMPATHY ENGINE — COMPOSE DISCHARGE BRIEF:\n" +
+          "Write at 6th-grade level. Short sentences. No jargon.\n\n" +
+          "SECTIONS:\n" +
+          "1. 👋 Welcome Home (warm greeting)\n" +
+          "2. 🏥 Why You Were Here (conditions in simple terms)\n" +
+          "3. 💊 Your Medications (use translated list below)\n" +
+          "4. 📋 What Your Tests Showed (reports in plain terms)\n" +
+          "5. 🏠 Taking Care of Yourself (3-5 tips)\n" +
+          "6. ⚠️ When to Call Your Doctor (specific signs)\n" +
+          "7. 💙 Note from Your Care Team (encouraging close)\n\n" +
+          `CONDITIONS: ${conditions}\n\n` +
+          `REPORTS: ${reports}\n\n` +
+          `TRANSLATED MEDICATIONS:\n${translated_medications}`;
+
         return McpUtilities.createTextResponse(output);
       },
     );
