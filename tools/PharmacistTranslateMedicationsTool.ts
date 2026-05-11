@@ -83,10 +83,11 @@ export const PharmacistTranslateMedicationsToolInstance: IMcpTool = {
 
         // Force LLM to write a message before calling Empathy Engine
         return McpUtilities.createTextResponse(
-          `PHARMACIST_RESULT: ${medCount} medication(s) translated.\n\n` +
-          `SAY TO USER: "The Pharmacist has translated ${medCount} medication(s) ` +
-          `into plain English. Now the Empathy Engine will compose the discharge brief..."\n\n` +
-          `THEN CALL: empathy_engine_compose_brief`
+          medCount === 0
+            ? `The Pharmacist found no structured medications in the FHIR records. ` +
+              `Now the Empathy Engine will compose the discharge brief using available data.`
+            : `The Pharmacist has translated ${medCount} medication(s) into plain English. ` +
+              `Now the Empathy Engine will compose the full discharge brief.`
         );
       },
     );

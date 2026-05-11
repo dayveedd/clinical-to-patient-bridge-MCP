@@ -118,16 +118,12 @@ export const ClinicalNavigatorFetchDataToolInstance: IMcpTool = {
             translatedMedications: [],
           });
 
-          // This response INSTRUCTS the LLM to write a message to the user
-          // before calling the next tool. This forces PO into sequential mode.
+          // Return natural language the LLM echoes as its own response
           return McpUtilities.createTextResponse(
-            `NAVIGATOR_RESULT: ${patientName} | ` +
-            `${conditions.length} condition(s) | ` +
-            `${medications.length} medication(s) | ` +
-            `${reports.length} report(s)\n\n` +
-            `SAY TO USER: "I have retrieved ${patientName}'s medical records. ` +
-            `Now consulting the Pharmacist to translate the medications..."\n\n` +
-            `THEN CALL: pharmacist_translate_medications`
+            `I have retrieved ${patientName}'s medical records from the FHIR server. ` +
+            `Found ${conditions.length} condition(s), ${medications.length} medication(s), ` +
+            `and ${reports.length} diagnostic report(s). ` +
+            `Now consulting the Pharmacist to translate the medications into plain English.`
           );
         } catch (error) {
           console.error("[clinical_navigator] Error:", error);
