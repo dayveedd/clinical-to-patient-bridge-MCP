@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Clinical-to-Patient Bridge Presentation</title>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap');
+    
+    body {
+      margin: 0;
+      padding: 0;
+      background-color: #e2e8f0;
+      font-family: 'Inter', sans-serif;
+      color: #0f172a;
+    }
+    
+    .slide {
+      background-color: white;
+      width: 1024px;
+      height: 768px;
+      margin: 20px auto;
+      box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+      box-sizing: border-box;
+      padding: 60px 80px;
+      position: relative;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      page-break-after: always;
+      overflow: hidden;
+    }
+    
+    .slide-number {
+      position: absolute;
+      bottom: 30px;
+      right: 40px;
+      font-size: 14px;
+      color: #94a3b8;
+    }
+    
+    h1 {
+      color: #0284c7;
+      font-size: 48px;
+      font-weight: 800;
+      margin-top: 0;
+      margin-bottom: 20px;
+    }
+    
+    h3 {
+      color: #64748b;
+      font-size: 24px;
+      font-weight: 400;
+      margin-top: 0;
+      margin-bottom: 40px;
+    }
+    
+    ul {
+      font-size: 28px;
+      line-height: 1.6;
+      color: #334155;
+    }
+    
+    li {
+      margin-bottom: 16px;
+    }
+    
+    .highlight {
+      background: #e0f2fe;
+      color: #0369a1;
+      padding: 2px 8px;
+      border-radius: 6px;
+      font-family: monospace;
+      font-weight: 600;
+    }
+    
+    .centered {
+      text-align: center;
+      align-items: center;
+    }
+    
+    .title-slide h1 {
+      font-size: 64px;
+    }
+    
+    .title-slide h3 {
+      font-size: 28px;
+    }
+    
+    .diagram-box {
+      background: #f8fafc;
+      border: 2px dashed #cbd5e1;
+      padding: 20px;
+      border-radius: 12px;
+      margin-top: 20px;
+    }
+    
+    .impact-box {
+      background: #f0fdf4;
+      border-left: 6px solid #22c55e;
+      padding: 20px 30px;
+      margin: 30px 0;
+      border-radius: 0 12px 12px 0;
+    }
+
+    .impact-box .before {
+      color: #ef4444;
+      font-weight: bold;
+      text-decoration: line-through;
+    }
+
+    .impact-box .after {
+      color: #16a34a;
+      font-weight: bold;
+    }
+
+    /* Print settings for PDF export */
+    @page {
+      size: 1024px 768px;
+      margin: 0;
+    }
+    @media print {
+      body { background-color: white; }
+      .slide {
+        margin: 0;
+        box-shadow: none;
+        page-break-after: always;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Slide 1 -->
+  <div class="slide centered title-slide">
+    <h1>🏥 Clinical-to-Patient Bridge</h1>
+    <h3>Empowering patients through empathetic AI orchestration</h3>
+    <p style="color: #64748b; margin-top: 50px;">Hackathon Demo Presentation</p>
+    <div class="slide-number">1</div>
+  </div>
+
+  <!-- Slide 2 -->
+  <div class="slide">
+    <h1>⚠️ The Problem: Clinical Jargon</h1>
+    <ul>
+      <li>When patients leave the hospital, they receive summaries meant for doctors.</li>
+      <li>They encounter complex codes like <span class="highlight">"PO BID PRN"</span>.</li>
+      <li>They read scary diagnoses like <span class="highlight">"Idiopathic Pulmonary Fibrosis"</span>.</li>
+      <li>They are presented with raw, structured FHIR JSON data.</li>
+    </ul>
+    <div class="diagram-box" style="background: #fef2f2; border-color: #fca5a5;">
+      <strong>Result:</strong> Patients are overwhelmed, leading to confusion, poor medication adherence, and hospital readmissions.
+    </div>
+    <div class="slide-number">2</div>
+  </div>
+
+  <!-- Slide 3 -->
+  <div class="slide">
+    <h1>💡 The Solution: Multi-Agent Orchestration</h1>
+    <p style="font-size: 28px; line-height: 1.6; color: #334155;">
+      We built a system on the <strong>Prompt Opinion</strong> platform where a <strong>Chief Resident Agent</strong> orchestrates three specialized agents using the Model Context Protocol (MCP).
+    </p>
+    <p style="font-size: 28px; line-height: 1.6; color: #334155;">
+      Instead of one massive, hallucination-prone prompt, the workflow is strictly divided into specialized roles to guarantee accuracy and empathy.
+    </p>
+    <div class="slide-number">3</div>
+  </div>
+
+  <!-- Slide 4 -->
+  <div class="slide">
+    <h1>⚙️ The Pipeline (MCP Tools)</h1>
+    <ul>
+      <li><strong>1. 🧭 Clinical Navigator:</strong> Securely fetches raw FHIR data (Conditions, Medications, Reports).</li>
+      <li><strong>2. 💊 Pharmacist:</strong> Translates complex medication dosages into plain English and flags side effects.</li>
+      <li><strong>3. 💙 Empathy Engine:</strong> Composes the final, warm, and easy-to-read discharge summary at a 6th-grade reading level.</li>
+    </ul>
+    <div class="slide-number">4</div>
+  </div>
+
+  <!-- Slide 5 -->
+  <div class="slide">
+    <h1>🚀 Technical Innovation: Server-Side State</h1>
+    <h3 style="color: #0f172a;">The Challenge:</h3>
+    <p style="font-size: 24px; color: #334155;">Passing thousands of FHIR tokens between agents exhausts LLM context windows and hits platform rate limits.</p>
+    
+    <h3 style="color: #0f172a; margin-top: 30px;">Our Solution:</h3>
+    <ul>
+      <li>The MCP server holds the FHIR data in a secure, server-side cache.</li>
+      <li>Agents read from the cache internally instead of echoing data.</li>
+    </ul>
+    <div class="diagram-box" style="background: #f0fdf4; border-color: #86efac; font-size: 24px;">
+      <strong>Result:</strong> Zero token exhaustion, 0 extra LLM API calls, completely bulletproof orchestration.
+    </div>
+    <div class="slide-number">5</div>
+  </div>
+
+  <!-- Slide 6 -->
+  <div class="slide">
+    <h1>📊 The Impact</h1>
+    
+    <div class="impact-box">
+      <div style="font-size: 24px; margin-bottom: 10px;">
+        <span class="before">Before:</span> <span style="font-family: monospace; color: #64748b;">Take 1 tab PO BID PRN</span>
+      </div>
+      <div style="font-size: 28px;">
+        <span class="after">After:</span> <span style="color: #0f172a;">Take 1 tablet by mouth, twice a day, as needed.</span>
+      </div>
+    </div>
+
+    <ul>
+      <li><strong>Reduces patient anxiety</strong> with empathetic, accessible language.</li>
+      <li><strong>Improves medication adherence</strong> through clear, jargon-free instructions.</li>
+      <li><strong>Saves doctors hours</strong> of manual documentation time.</li>
+    </ul>
+    <div class="slide-number">6</div>
+  </div>
+
+  <!-- Slide 7 -->
+  <div class="slide centered">
+    <h1>🙏 Thank You</h1>
+    <h3 style="font-size: 36px; color: #0284c7;">Clinical-to-Patient Bridge</h3>
+    <p style="font-size: 24px; color: #64748b; font-style: italic;">Bridging the gap between clinical data and human empathy.</p>
+    <div class="slide-number">7</div>
+  </div>
+
+</body>
+</html>

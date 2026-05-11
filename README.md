@@ -71,22 +71,21 @@ The server starts on port 5000 by default.
 {{ PatientDataFragment }}
 {{ McpAppsFragment }}
 
-## Your Role
 You are the Chief Resident overseeing patient discharges.
 
-## Discharge Workflow (call tools in this exact order)
-1. Call `clinical_navigator_fetch_data` (no arguments needed)
-2. Call `pharmacist_translate_medications` (no arguments needed)
-3. Read the Pharmacist's medication list, then call
-   `empathy_engine_compose_brief` with the translated medications
-4. Follow the Empathy Engine's instructions to write the final brief
+## Workflow
+When asked anything about a patient, follow these steps in order:
 
-If the Navigator reports no FHIR data, use the patient's clinical note
-from the context above when translating medications and writing the brief.
+Step 1 — Call `clinical_navigator_fetch_data`. After it returns, relay its response to the user in your own words.
 
-## Scope
-You can: generate discharge briefs, explain conditions/medications.
-You cannot: diagnose, prescribe, modify treatments, access other patients.
+Step 2 — Call `pharmacist_translate_medications`. After it returns, relay its response to the user in your own words.
+
+Step 3 — Call `empathy_engine_compose_brief`. After it returns, copy and display the FULL text content from the tool response directly to the user. Do not shorten it. Do not summarize it.
+
+## Critical Rules
+- After EACH tool call, write a short message to the user before calling the next tool.
+- When the empathy_engine_compose_brief tool returns, output its full text directly. Do NOT say "I am launching an interface." Display the discharge brief as written.
+- Stay within your role. You can: explain conditions, list medications, generate discharge briefs. You cannot: diagnose new conditions or prescribe medications.
 ```
 
 ## Project Structure
@@ -101,12 +100,64 @@ You cannot: diagnose, prescribe, modify treatments, access other patients.
 ├── mcp-utilities.ts          # MCP response helpers
 ├── IMcpTool.ts               # Tool interface
 ├── null-utilities.ts         # Null-check helpers
+├── Presentation_Deck.html    # Browser-viewable demo presentation
 ├── tools/
 │   ├── index.ts              # Tool exports (auto-registration)
-│   ├── ClinicalNavigatorFetchDataTool.ts   # Step 1: FHIR data fetch
+│   ├── ClinicalNavigatorFetchDataTool.ts    # Step 1: FHIR data fetch
 │   ├── PharmacistTranslateMedicationsTool.ts # Step 2: Med translation
 │   └── EmpathyEngineComposeBriefTool.ts     # Step 3: Brief composition
+├── scripts/
+│   └── generate_fhir_bundle.py  # Python script to generate synthetic FHIR patients
+└── data/
+    └── complex_patients_diverse.json  # FHIR R4 bundle with 15 complex patients
 ```
+
+## Synthetic Patient Data
+
+The Prompt Opinion demo environment provides basic single-condition patients that are
+insufficient for showcasing the full capability of the pipeline. To properly demonstrate
+medication translation and empathetic brief generation, 15 complex synthetic patients
+were generated with realistic multi-morbidity profiles.
+
+### `scripts/generate_fhir_bundle.py`
+
+A Python script that generates a valid FHIR R4 Bundle containing 15 synthetic patients.
+Each patient has:
+
+- Between 2 and 5 active diagnoses (e.g. Idiopathic Pulmonary Fibrosis, Atrial Fibrillation,
+  Chronic Kidney Disease, Type 2 Diabetes with neuropathy, Congestive Heart Failure)
+- Between 3 and 7 medications with full clinical dosing notation using abbreviations
+  such as `PO BID PRN`, `IV QHS`, `TID AC` — exactly the kind of notation that
+  patients cannot parse without help
+- One or two DiagnosticReports with typed clinical conclusions
+
+**Requirements:**
+
+```bash
+pip install fhir.resources
+```
+
+**Run:**
+
+```bash
+python scripts/generate_fhir_bundle.py
+# Outputs: data/complex_patients_diverse.json
+```
+
+### `data/complex_patients_diverse.json`
+
+A pre-generated FHIR R4 Bundle containing the 15 synthetic patients, ready to be
+uploaded to any HAPI FHIR server. To load it into a HAPI FHIR server:
+
+```bash
+curl -X POST https://your-hapi-fhir-server/fhir \
+  -H "Content-Type: application/fhir+json" \
+  -d @data/complex_patients_diverse.json
+```
+
+Once uploaded, configure the FHIR Base URL in Prompt Opinion to point to your HAPI
+FHIR server. The patients will appear in the PO patient selector and can be used
+immediately with the Chief Resident agent.
 
 ## Built With
 

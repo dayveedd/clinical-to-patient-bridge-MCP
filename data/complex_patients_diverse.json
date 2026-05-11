@@ -1,0 +1,2736 @@
+{
+  "resourceType": "Bundle",
+  "type": "transaction",
+  "entry": [
+    {
+      "fullUrl": "urn:uuid:5cd11338-3d05-4efa-956f-ac23fde8c800",
+      "resource": {
+        "resourceType": "Patient",
+        "name": [
+          {
+            "family": "Montgomery",
+            "given": [
+              "Elias"
+            ]
+          }
+        ],
+        "gender": "male",
+        "birthDate": "1950-05-12"
+      },
+      "request": {
+        "method": "POST",
+        "url": "Patient"
+      }
+    },
+    {
+      "fullUrl": "urn:uuid:4560d544-b40a-4cfa-8657-071695b53ebe",
+      "resource": {
+        "resourceType": "Condition",
+        "clinicalStatus": {
+          "coding": [
+            {
+              "system": "http://terminology.hl7.org/CodeSystem/condition-clinical",
+              "code": "active"
+            }
+          ]
+        },
+        "code": {
+          "coding": [
+            {
+              "system": "http://hl7.org/fhir/sid/icd-10",
+              "code": "G20",
+              "display": "Parkinson's Disease with motor fluctuations"
+            }
+          ],
+          "text": "Parkinson's Disease with motor fluctuations"
+        },
+        "subject": {
+          "reference": "urn:uuid:5cd11338-3d05-4efa-956f-ac23fde8c800"
+        }
+      },
+      "request": {
+        "method": "POST",
+        "url": "Condition"
+      }
+    },
+    {
+      "fullUrl": "urn:uuid:805f1641-0da0-40b6-bd16-8390b5d82da1",
+      "resource": {
+        "resourceType": "Condition",
+        "clinicalStatus": {
+          "coding": [
+            {
+              "system": "http://terminology.hl7.org/CodeSystem/condition-clinical",
+              "code": "active"
+            }
+          ]
+        },
+        "code": {
+          "coding": [
+            {
+              "system": "http://hl7.org/fhir/sid/icd-10",
+              "code": "G40.4",
+              "display": "Intractable Generalized Tonic-Clonic Epilepsy"
+            }
+          ],
+          "text": "Intractable Generalized Tonic-Clonic Epilepsy"
+        },
+        "subject": {
+          "reference": "urn:uuid:5cd11338-3d05-4efa-956f-ac23fde8c800"
+        }
+      },
+      "request": {
+        "method": "POST",
+        "url": "Condition"
+      }
+    },
+    {
+      "fullUrl": "urn:uuid:04d7a2c6-4b5b-40eb-b02b-287c682b97bd",
+      "resource": {
+        "resourceType": "MedicationRequest",
+        "status": "active",
+        "intent": "order",
+        "medicationCodeableConcept": {
+          "text": "Levodopa/Carbidopa ER"
+        },
+        "subject": {
+          "reference": "urn:uuid:5cd11338-3d05-4efa-956f-ac23fde8c800"
+        },
+        "dosageInstruction": [
+          {
+            "text": "25/100 mg tab, take 1.5 tabs PO TID, adjust based on motor response"
+          }
+        ]
+      },
+      "request": {
+        "method": "POST",
+        "url": "MedicationRequest"
+      }
+    },
+    {
+      "fullUrl": "urn:uuid:ae5a1f39-059e-4a68-8f4d-2c2c15567cdc",
+      "resource": {
+        "resourceType": "MedicationRequest",
+        "status": "active",
+        "intent": "order",
+        "medicationCodeableConcept": {
+          "text": "Valproic Acid ER"
+        },
+        "subject": {
+          "reference": "urn:uuid:5cd11338-3d05-4efa-956f-ac23fde8c800"
+        },
+        "dosageInstruction": [
+          {
+            "text": "750 mg tab, take 1 tab PO BID, with therapeutic drug monitoring (TDM)"
+          }
+        ]
+      },
+      "request": {
+        "method": "POST",
+        "url": "MedicationRequest"
+      }
+    },
+    {
+      "fullUrl": "urn:uuid:f6f88f73-ca32-4f4f-9805-b104a7f90d16",
+      "resource": {
+        "resourceType": "MedicationRequest",
+        "status": "active",
+        "intent": "order",
+        "medicationCodeableConcept": {
+          "text": "Pramipexole ER"
+        },
+        "subject": {
+          "reference": "urn:uuid:5cd11338-3d05-4efa-956f-ac23fde8c800"
+        },
+        "dosageInstruction": [
+          {
+            "text": "1.5 mg tab, take 0.375 mg PO QHS, titrate weekly to effect"
+          }
+        ]
+      },
+      "request": {
+        "method": "POST",
+        "url": "MedicationRequest"
+      }
+    },
+    {
+      "fullUrl": "urn:uuid:26b9abc5-dcac-40d9-b27b-2861a829b33f",
+      "resource": {
+        "resourceType": "DocumentReference",
+        "status": "current",
+        "subject": {
+          "reference": "urn:uuid:5cd11338-3d05-4efa-956f-ac23fde8c800"
+        },
+        "type": {
+          "coding": [
+            {
+              "system": "http://loinc.org",
+              "code": "11488-4",
+              "display": "Consult note"
+            }
+          ]
+        },
+        "content": [
+          {
+            "attachment": {
+              "contentType": "text/plain",
+              "data": "UHQgaXMgYSA3MyB5L28gTSB3LyBrbm93biBoeCBvZiBQYXJraW5zb24ncyBEaXNlYXNlIChQRCkgYW5kIGludHJhY3RhYmxlIEdlbmVyYWxpemVkIFRvbmljLUNsb25pYyAoR1RDKSBzZWl6dXJlcywgYWRtaXR0ZWQgYy9vIHdvcnNlbmluZyBtb3RvciBmbHVjdHVhdGlvbnMsIGluY3JlYXNlZCBicmFkeWtpbmVzaWEsIGFuZCByZWNlbnQgY2x1c3RlciBvZiBicmVha3Rocm91Z2ggc2VpenVyZXMgZGVzcGl0ZSBjdXJyZW50IHJlZ2ltZW4uIEEvUDogQWRqdXN0IExldm9kb3BhL0NhcmJpZG9wYSBFUiB0byAxLjUgdGFicyBQTyBUSUQsIGluY3IgVmFscHJvaWMgQWNpZCBFUiB0byA3NTAgbWcgUE8gQklEIHcvIFRETSwgYW5kIGluaXRpYXRlIFByYW1pcGV4b2xlIEVSIDAuMzc1IG1nIFBPIFFIUywgdGl0cmF0ZSBxNS03ZCB0byB0YXJnZXQgMS41IG1nL2QgcGVyIG5ldXJvbG9naXN0J3Mgb3JkZXJzLiBGL3UgaW4gMiB3a3MgaW4gTmV1cm8gY2xpbmljIGZvciBtZWQgdGl0cmF0aW9uIGFuZCBzeCByZS1ldmFsdWF0aW9uOyBjb250IGNsb3NlIG1vbml0b3JpbmcgZm9yIEFFL3RveGljaXR5IGFuZCBwb3RlbnRpYWwgbmVlZCBmb3IgRUVHL3ZpZGVvIEVFRy4="
+            }
+          }
+        ]
+      },
+      "request": {
+        "method": "POST",
+        "url": "DocumentReference"
+      }
+    },
+    {
+      "fullUrl": "urn:uuid:befd089b-1e99-43b6-89ba-d558cd238a4f",
+      "resource": {
+        "resourceType": "Patient",
+        "name": [
+          {
+            "family": "Rios",
+            "given": [
+              "Marcus"
+            ]
+          }
+        ],
+        "gender": "male",
+        "birthDate": "1950-05-12"
+      },
+      "request": {
+        "method": "POST",
+        "url": "Patient"
+      }
+    },
+    {
+      "fullUrl": "urn:uuid:dd6743bf-cd55-4098-9006-03ceb4e11ffb",
+      "resource": {
+        "resourceType": "Condition",
+        "clinicalStatus": {
+          "coding": [
+            {
+              "system": "http://terminology.hl7.org/CodeSystem/condition-clinical",
+              "code": "active"
+            }
+          ]
+        },
+        "code": {
+          "coding": [
+            {
+              "system": "http://hl7.org/fhir/sid/icd-10",
+              "code": "K50.014",
+              "display": "Crohn's Disease of Small Intestine with Abscess"
+            }
+          ],
+          "text": "Crohn's Disease of Small Intestine with Abscess"
+        },
+        "subject": {
+          "reference": "urn:uuid:befd089b-1e99-43b6-89ba-d558cd238a4f"
+        }
+      },
+      "request": {
+        "method": "POST",
+        "url": "Condition"
+      }
+    },
+    {
+      "fullUrl": "urn:uuid:98634d80-595e-4379-a3e8-cd88c79df3d3",
+      "resource": {
+        "resourceType": "Condition",
+        "clinicalStatus": {
+          "coding": [
+            {
+              "system": "http://terminology.hl7.org/CodeSystem/condition-clinical",
+              "code": "active"
+            }
+          ]
+        },
+        "code": {
+          "coding": [
+            {
+              "system": "http://hl7.org/fhir/sid/icd-10",
+              "code": "K74.60",
+              "display": "Hepatic Cirrhosis, Decompensated with Hepatic Encephalopathy"
+            }
+          ],
+          "text": "Hepatic Cirrhosis, Decompensated with Hepatic Encephalopathy"
+        },
+        "subject": {
+          "reference": "urn:uuid:befd089b-1e99-43b6-89ba-d558cd238a4f"
+        }
+      },
+      "request": {
+        "method": "POST",
+        "url": "Condition"
+      }
+    },
+    {
+      "fullUrl": "urn:uuid:8efe63e6-1838-4f90-bfac-f63bba086a57",
+      "resource": {
+        "resourceType": "MedicationRequest",
+        "status": "active",
+        "intent": "order",
+        "medicationCodeableConcept": {
+          "text": "Infliximab"
+        },
+        "subject": {
+          "reference": "urn:uuid:befd089b-1e99-43b6-89ba-d558cd238a4f"
+        },
+        "dosageInstruction": [
+          {
+            "text": "5 mg/kg IV infusion over 2 hours q8w"
+          }
+        ]
+      },
+      "request": {
+        "method": "POST",
+        "url": "MedicationRequest"
+      }
+    },
+    {
+      "fullUrl": "urn:uuid:3791f10c-0c3d-4050-8240-534a1c9da3bc",
+      "resource": {
+        "resourceType": "MedicationRequest",
+        "status": "active",
+        "intent": "order",
+        "medicationCodeableConcept": {
+          "text": "Spironolactone"
+        },
+        "subject": {
+          "reference": "urn:uuid:befd089b-1e99-43b6-89ba-d558cd238a4f"
+        },
+        "dosageInstruction": [
+          {
+            "text": "100 mg PO daily"
+          }
+        ]
+      },
+      "request": {
+        "method": "POST",
+        "url": "MedicationRequest"
+      }
+    },
+    {
+      "fullUrl": "urn:uuid:c671ba9e-9722-45f5-8d0f-103c6e9736c6",
+      "resource": {
+        "resourceType": "MedicationRequest",
+        "status": "active",
+        "intent": "order",
+        "medicationCodeableConcept": {
+          "text": "Lactulose"
+        },
+        "subject": {
+          "reference": "urn:uuid:befd089b-1e99-43b6-89ba-d558cd238a4f"
+        },
+        "dosageInstruction": [
+          {
+            "text": "30 mL PO QID (titrate to 2-3 soft stools/day)"
+          }
+        ]
+      },
+      "request": {
+        "method": "POST",
+        "url": "MedicationRequest"
+      }
+    },
+    {
+      "fullUrl": "urn:uuid:b1eee822-601e-402e-912c-9801a3fe22ef",
+      "resource": {
+        "resourceType": "DocumentReference",
+        "status": "current",
+        "subject": {
+          "reference": "urn:uuid:befd089b-1e99-43b6-89ba-d558cd238a4f"
+        },
+        "type": {
+          "coding": [
+            {
+              "system": "http://loinc.org",
+              "code": "11488-4",
+              "display": "Consult note"
+            }
+          ]
+        },
+        "content": [
+          {
+            "attachment": {
+              "contentType": "text/plain",
+              "data": "UHQgTWFyY3VzIFJpb3MsIDc0IHkuby4gTSwgcHJlc2VudHMgYy9vIHdvcnNlbmluZyBhYmQgZGlzdGVuc2lvbiwgZmF0aWd1ZSwgYW5kIGNvbmZ1c2lvbiB4M2QuIFBNSHggc2lnbmlmaWNhbnQgZm9yIHNldmVyZSBDcm9obidzIER6IHcvIGFic2Nlc3MgJiBkZWNvbXBlbnNhdGVkIGhlcGF0aWMgY2lycmhvc2lzOyBQRSBub3RhYmxlIGZvciBhc3Rlcml4aXMsIHNjbGVyYWwgaWN0ZXJ1cywgYW5kIHNpZ25pZmljYW50IGFzY2l0ZXM7IGluaXRpYWwgbGFicyBjL3cgZWxldmF0ZWQgTkgzIGFuZCBhYm5vcm1hbCBMRlRzLiBBL1A6IEFjdXRlIEhFIGV4YWNlcmJhdGlvbi4gUGxhbjogSW5pdGlhdGUgUmlmYXhpbWluIDU1MG1nIFBPIEJJRCwgTGFjdHVsb3NlIDMwbUwgUE8gUUlEICh0aXRyYXRlIHRvIDItMyBzb2Z0IHN0b29scy9kYXkpLCBjb250aW51ZSBJVkYsIG1vbml0b3IgVlMvTVMvbHl0ZXMgcTRoLiBGL1UgR0kgY29uc3VsdCBmb3IgY29tcHJlaGVuc2l2ZSBtZ210ICYgdy91IG9mIHRyaWdnZXIu"
+            }
+          }
+        ]
+      },
+      "request": {
+        "method": "POST",
+        "url": "DocumentReference"
+      }
+    },
+    {
+      "fullUrl": "urn:uuid:04c443ea-79ef-4eff-8c93-b6be7fb1542b",
+      "resource": {
+        "resourceType": "Patient",
+        "name": [
+          {
+            "family": "Rios",
+            "given": [
+              "Nadia"
+            ]
+          }
+        ],
+        "gender": "male",
+        "birthDate": "1965-03-20"
+      },
+      "request": {
+        "method": "POST",
+        "url": "Patient"
+      }
+    },
+    {
+      "fullUrl": "urn:uuid:e3d4d03d-bad0-4ef4-9afc-5b3f2abd6493",
+      "resource": {
+        "resourceType": "Condition",
+        "clinicalStatus": {
+          "coding": [
+            {
+              "system": "http://terminology.hl7.org/CodeSystem/condition-clinical",
+              "code": "active"
+            }
+          ]
+        },
+        "code": {
+          "coding": [
+            {
+              "system": "http://hl7.org/fhir/sid/icd-10",
+              "code": "C50.919",
+              "display": "Invasive Ductal Carcinoma of Breast, Metastatic to Bone"
+            }
+          ],
+          "text": "Invasive Ductal Carcinoma of Breast, Metastatic to Bone"
+        },
+        "subject": {
+          "reference": "urn:uuid:04c443ea-79ef-4eff-8c93-b6be7fb1542b"
+        }
+      },
+      "request": {
+        "method": "POST",
+        "url": "Condition"
+      }
+    },
+    {
+      "fullUrl": "urn:uuid:e9dd0fce-0cc5-4d05-ae1e-b11cddca9098",
+      "resource": {
+        "resourceType": "Condition",
+        "clinicalStatus": {
+          "coding": [
+            {
+              "system": "http://terminology.hl7.org/CodeSystem/condition-clinical",
+              "code": "active"
+            }
+          ]
+        },
+        "code": {
+          "coding": [
+            {
+              "system": "http://hl7.org/fhir/sid/icd-10",
+              "code": "G62.0",
+              "display": "Chemotherapy-induced Peripheral Neuropathy"
+            }
+          ],
+          "text": "Chemotherapy-induced Peripheral Neuropathy"
+        },
+        "subject": {
+          "reference": "urn:uuid:04c443ea-79ef-4eff-8c93-b6be7fb1542b"
+        }
+      },
+      "request": {
+        "method": "POST",
+        "url": "Condition"
+      }
+    },
+    {
+      "fullUrl": "urn:uuid:2daa05c3-01fe-4494-a3e7-64b3b264e53e",
+      "resource": {
+        "resourceType": "MedicationRequest",
+        "status": "active",
+        "intent": "order",
+        "medicationCodeableConcept": {
+          "text": "Paclitaxel"
+        },
+        "subject": {
+          "reference": "urn:uuid:04c443ea-79ef-4eff-8c93-b6be7fb1542b"
+        },
+        "dosageInstruction": [
+          {
+            "text": "175 mg/m\u00b2 IV Q3W x 6 cycles, via central line"
+          }
+        ]
+      },
+      "request": {
+        "method": "POST",
+        "url": "MedicationRequest"
+      }
+    },
+    {
+      "fullUrl": "urn:uuid:e54caacf-27c7-4ca5-9011-4e9f9016603b",
+      "resource": {
+        "resourceType": "MedicationRequest",
+        "status": "active",
+        "intent": "order",
+        "medicationCodeableConcept": {
+          "text": "Ondansetron"
+        },
+        "subject": {
+          "reference": "urn:uuid:04c443ea-79ef-4eff-8c93-b6be7fb1542b"
+        },
+        "dosageInstruction": [
+          {
+            "text": "8 mg PO TID PRN nausea/vomiting, q8h prn"
+          }
+        ]
+      },
+      "request": {
+        "method": "POST",
+        "url": "MedicationRequest"
+      }
+    },
+    {
+      "fullUrl": "urn:uuid:4ca3286e-9741-4d7b-aa52-25943ed50dbe",
+      "resource": {
+        "resourceType": "MedicationRequest",
+        "status": "active",
+        "intent": "order",
+        "medicationCodeableConcept": {
+          "text": "Dexamethasone"
+        },
+        "subject": {
+          "reference": "urn:uuid:04c443ea-79ef-4eff-8c93-b6be7fb1542b"
+        },
+        "dosageInstruction": [
+          {
+            "text": "8 mg PO BID x 3 days, initiated prior to chemotherapy infusion"
+          }
+        ]
+      },
+      "request": {
+        "method": "POST",
+        "url": "MedicationRequest"
+      }
+    },
+    {
+      "fullUrl": "urn:uuid:90659e0d-0386-4ad4-ba7f-af1f4e7bf9c7",
+      "resource": {
+        "resourceType": "DocumentReference",
+        "status": "current",
+        "subject": {
+          "reference": "urn:uuid:04c443ea-79ef-4eff-8c93-b6be7fb1542b"
+        },
+        "type": {
+          "coding": [
+            {
+              "system": "http://loinc.org",
+              "code": "11488-4",
+              "display": "Consult note"
+            }
+          ]
+        },
+        "content": [
+          {
+            "attachment": {
+              "contentType": "text/plain",
+              "data": "UHQgaXMgYSA1OSB5Lm8uIE0gdy8gaHggb2YgbWV0LiBJREMgKEVSKy9QUisvSEVSMi0pLCBzL3AgNCBjeWNsZXMgUGFjbGl0YXhlbCwgcC93IGMvbyDihpFmYXRpZ3VlICYgbmV3IG9uc2V0IEIvTCBMRSBwYXJlc3RoZXNpYXMuIFBFIHNpZ25pZmljYW50IGZvciBHMiBwZXJpcGhlcmFsIG5ldXJvcGF0aHkuIExhYnMgV05MLiBJbXByZXNzaW9uOiBDaGVtby1pbmR1Y2VkIFBOLCBsaWtlbHkgZC90IFBhY2xpdGF4ZWwuIFBsYW46IEhvbGQgUGFjbGl0YXhlbCB0aGlzIGN5Y2xlLiBJbml0aWF0ZSBHYWJhcGVudGluIDMwMG1nIFBPIFFIUywgdGl0cmF0ZS4gRi9VIHcvIE9uYyBpbiAxIHdrIHRvIHIvZSByZWdpbWVuICYgc3guIENvbnQgT25kYW5zZXRyb24gOG1nIFBPIFRJRCBQUk4u"
+            }
+          }
+        ]
+      },
+      "request": {
+        "method": "POST",
+        "url": "DocumentReference"
+      }
+    },
+    {
+      "fullUrl": "urn:uuid:19b0ca7d-4184-46df-8584-fc2265fd3d35",
+      "resource": {
+        "resourceType": "Patient",
+        "name": [
+          {
+            "family": "Silva",
+            "given": [
+              "Eleanor"
+            ]
+          }
+        ],
+        "gender": "female",
+        "birthDate": "1950-05-12"
+      },
+      "request": {
+        "method": "POST",
+        "url": "Patient"
+      }
+    },
+    {
+      "fullUrl": "urn:uuid:67ed922a-432e-41d1-bee0-a1de09e4cdf2",
+      "resource": {
+        "resourceType": "Condition",
+        "clinicalStatus": {
+          "coding": [
+            {
+              "system": "http://terminology.hl7.org/CodeSystem/condition-clinical",
+              "code": "active"
+            }
+          ]
+        },
+        "code": {
+          "coding": [
+            {
+              "system": "http://hl7.org/fhir/sid/icd-10",
+              "code": "E11.35",
+              "display": "Type 2 Diabetes Mellitus with Proliferative Diabetic Retinopathy"
+            }
+          ],
+          "text": "Type 2 Diabetes Mellitus with Proliferative Diabetic Retinopathy"
+        },
+        "subject": {
+          "reference": "urn:uuid:19b0ca7d-4184-46df-8584-fc2265fd3d35"
+        }
+      },
+      "request": {
+        "method": "POST",
+        "url": "Condition"
+      }
+    },
+    {
+      "fullUrl": "urn:uuid:7039b9da-8421-4ac2-a980-dc5b791b2dad",
+      "resource": {
+        "resourceType": "Condition",
+        "clinicalStatus": {
+          "coding": [
+            {
+              "system": "http://terminology.hl7.org/CodeSystem/condition-clinical",
+              "code": "active"
+            }
+          ]
+        },
+        "code": {
+          "coding": [
+            {
+              "system": "http://hl7.org/fhir/sid/icd-10",
+              "code": "E11.22",
+              "display": "Type 2 Diabetes Mellitus with Diabetic Chronic Kidney Disease, Stage 4"
+            }
+          ],
+          "text": "Type 2 Diabetes Mellitus with Diabetic Chronic Kidney Disease, Stage 4"
+        },
+        "subject": {
+          "reference": "urn:uuid:19b0ca7d-4184-46df-8584-fc2265fd3d35"
+        }
+      },
+      "request": {
+        "method": "POST",
+        "url": "Condition"
+      }
+    },
+    {
+      "fullUrl": "urn:uuid:288887e3-db36-48c6-a412-553bf4eed153",
+      "resource": {
+        "resourceType": "MedicationRequest",
+        "status": "active",
+        "intent": "order",
+        "medicationCodeableConcept": {
+          "text": "Insulin Glargine (Lantus)"
+        },
+        "subject": {
+          "reference": "urn:uuid:19b0ca7d-4184-46df-8584-fc2265fd3d35"
+        },
+        "dosageInstruction": [
+          {
+            "text": "18 units SC QHS"
+          }
+        ]
+      },
+      "request": {
+        "method": "POST",
+        "url": "MedicationRequest"
+      }
+    },
+    {
+      "fullUrl": "urn:uuid:ecb56d67-220a-4681-90d1-4a9c0c6c185b",
+      "resource": {
+        "resourceType": "MedicationRequest",
+        "status": "active",
+        "intent": "order",
+        "medicationCodeableConcept": {
+          "text": "Empagliflozin (Jardiance)"
+        },
+        "subject": {
+          "reference": "urn:uuid:19b0ca7d-4184-46df-8584-fc2265fd3d35"
+        },
+        "dosageInstruction": [
+          {
+            "text": "25 mg PO QD"
+          }
+        ]
+      },
+      "request": {
+        "method": "POST",
+        "url": "MedicationRequest"
+      }
+    },
+    {
+      "fullUrl": "urn:uuid:e6dffb71-154c-40fa-8b50-8b044abbd45e",
+      "resource": {
+        "resourceType": "MedicationRequest",
+        "status": "active",
+        "intent": "order",
+        "medicationCodeableConcept": {
+          "text": "Semaglutide (Ozempic)"
+        },
+        "subject": {
+          "reference": "urn:uuid:19b0ca7d-4184-46df-8584-fc2265fd3d35"
+        },
+        "dosageInstruction": [
+          {
+            "text": "1 mg SC QWK"
+          }
+        ]
+      },
+      "request": {
+        "method": "POST",
+        "url": "MedicationRequest"
+      }
+    },
+    {
+      "fullUrl": "urn:uuid:cf946247-c72b-48f7-9e53-1692bd06fa23",
+      "resource": {
+        "resourceType": "DocumentReference",
+        "status": "current",
+        "subject": {
+          "reference": "urn:uuid:19b0ca7d-4184-46df-8584-fc2265fd3d35"
+        },
+        "type": {
+          "coding": [
+            {
+              "system": "http://loinc.org",
+              "code": "11488-4",
+              "display": "Consult note"
+            }
+          ]
+        },
+        "content": [
+          {
+            "attachment": {
+              "contentType": "text/plain",
+              "data": "UHQsIGEgNzMgeS9vIEYgd2l0aCBrbm93biBUMkRNLCBQRFIsIGFuZCBDS0QgU3RnIDQsIHByZXNlbnRzIHRvIEVEIGMvbyB3b3JzZW5pbmcgZHlzcG5lYSBvbiBleGVydGlvbiBhbmQgdW5jb250cm9sbGVkIEJHIGxldmVscyAodXAgdG8gNDgwIG1nL2RMKSB4IDcyIGhycy4gQS9QOiBBY3V0ZSBkZWNvbXBlbnNhdGVkIFQyRE0gd2l0aCBzdXNwZWN0ZWQgREtBIHZzLiBISFM7IHIvbyBjYXJkaWFjIGV0aW9sb2d5IGZvciBkeXNwbmVhLiBJbml0aWF0ZWQgSVYgaW5zdWxpbiBkcmlwLCBvYnRhaW5lZCBjb21wcmVoZW5zaXZlIGxhYnMgaW5jbC4gQUJHLCBCTVAsIGxhY3RhdGUsIFUvQTsgb3JkZXJlZCBDWFIsIEVDRywgYW5kIENhcmRpb2xvZ3kgY29uc3VsdDsgd2lsbCB0aXRyYXRlIGluc3VsaW4gdG8gdGFyZ2V0IEJHIDE0MC0xODAgbWcvZEwgd2l0aCBjbG9zZSBtb25pdG9yaW5nIFExSC4gRi9VIGluIGNsaW5pYyB3aXRoIEVuZG9jcmlub2xvZ3kgaW4gMyBkYXlzIHBvc3QtZGlzY2hhcmdlIGZvciByZWdpbWVuIG9wdGltaXphdGlvbi4="
+            }
+          }
+        ]
+      },
+      "request": {
+        "method": "POST",
+        "url": "DocumentReference"
+      }
+    },
+    {
+      "fullUrl": "urn:uuid:fb3449d5-068e-41ca-9b85-efafaba40bc4",
+      "resource": {
+        "resourceType": "Patient",
+        "name": [
+          {
+            "family": "Kim",
+            "given": [
+              "Barnaby"
+            ]
+          }
+        ],
+        "gender": "male",
+        "birthDate": "1950-05-12"
+      },
+      "request": {
+        "method": "POST",
+        "url": "Patient"
+      }
+    },
+    {
+      "fullUrl": "urn:uuid:1c1fa651-c1a0-434e-af82-63ad9b9c64fe",
+      "resource": {
+        "resourceType": "Condition",
+        "clinicalStatus": {
+          "coding": [
+            {
+              "system": "http://terminology.hl7.org/CodeSystem/condition-clinical",
+              "code": "active"
+            }
+          ]
+        },
+        "code": {
+          "coding": [
+            {
+              "system": "http://hl7.org/fhir/sid/icd-10",
+              "code": "K50.014",
+              "display": "Severe Crohn's Disease with enterocutaneous fistula"
+            }
+          ],
+          "text": "Severe Crohn's Disease with enterocutaneous fistula"
+        },
+        "subject": {
+          "reference": "urn:uuid:fb3449d5-068e-41ca-9b85-efafaba40bc4"
+        }
+      },
+      "request": {
+        "method": "POST",
+        "url": "Condition"
+      }
+    },
+    {
+      "fullUrl": "urn:uuid:d3eba8fa-4eb8-46ef-964d-66ef3d60889f",
+      "resource": {
+        "resourceType": "Condition",
+        "clinicalStatus": {
+          "coding": [
+            {
+              "system": "http://terminology.hl7.org/CodeSystem/condition-clinical",
+              "code": "active"
+            }
+          ]
+        },
+        "code": {
+          "coding": [
+            {
+              "system": "http://hl7.org/fhir/sid/icd-10",
+              "code": "K74.60",
+              "display": "Cirrhosis of Liver with Ascites"
+            }
+          ],
+          "text": "Cirrhosis of Liver with Ascites"
+        },
+        "subject": {
+          "reference": "urn:uuid:fb3449d5-068e-41ca-9b85-efafaba40bc4"
+        }
+      },
+      "request": {
+        "method": "POST",
+        "url": "Condition"
+      }
+    },
+    {
+      "fullUrl": "urn:uuid:460797a0-44e3-4d5f-bb7e-28285c7c2d27",
+      "resource": {
+        "resourceType": "MedicationRequest",
+        "status": "active",
+        "intent": "order",
+        "medicationCodeableConcept": {
+          "text": "Adalimumab (Humira) SC"
+        },
+        "subject": {
+          "reference": "urn:uuid:fb3449d5-068e-41ca-9b85-efafaba40bc4"
+        },
+        "dosageInstruction": [
+          {
+            "text": "40 mg SC q2wks"
+          }
+        ]
+      },
+      "request": {
+        "method": "POST",
+        "url": "MedicationRequest"
+      }
+    },
+    {
+      "fullUrl": "urn:uuid:5473895d-2388-4950-96b5-cc336d5ff656",
+      "resource": {
+        "resourceType": "MedicationRequest",
+        "status": "active",
+        "intent": "order",
+        "medicationCodeableConcept": {
+          "text": "Spironolactone Tab"
+        },
+        "subject": {
+          "reference": "urn:uuid:fb3449d5-068e-41ca-9b85-efafaba40bc4"
+        },
+        "dosageInstruction": [
+          {
+            "text": "100 mg PO qAM"
+          }
+        ]
+      },
+      "request": {
+        "method": "POST",
+        "url": "MedicationRequest"
+      }
+    },
+    {
+      "fullUrl": "urn:uuid:ac702d6a-6f49-4a04-80b3-b04dcb024344",
+      "resource": {
+        "resourceType": "MedicationRequest",
+        "status": "active",
+        "intent": "order",
+        "medicationCodeableConcept": {
+          "text": "Lactulose Oral Solution"
+        },
+        "subject": {
+          "reference": "urn:uuid:fb3449d5-068e-41ca-9b85-efafaba40bc4"
+        },
+        "dosageInstruction": [
+          {
+            "text": "30 mL PO TID PRN for HE"
+          }
+        ]
+      },
+      "request": {
+        "method": "POST",
+        "url": "MedicationRequest"
+      }
+    },
+    {
+      "fullUrl": "urn:uuid:7e754a46-727c-4064-b003-5e939db4855b",
+      "resource": {
+        "resourceType": "DocumentReference",
+        "status": "current",
+        "subject": {
+          "reference": "urn:uuid:fb3449d5-068e-41ca-9b85-efafaba40bc4"
+        },
+        "type": {
+          "coding": [
+            {
+              "system": "http://loinc.org",
+              "code": "11488-4",
+              "display": "Consult note"
+            }
+          ]
+        },
+        "content": [
+          {
+            "attachment": {
+              "contentType": "text/plain",
+              "data": "UHQgaXMgYSA3NCB5L28gTSB3LyBoeCBvZiBzZXZlcmUgQ0QgKEs1MC4wMTQpICYgRVRPSCBjaXJyaG9zaXMgKEs3NC4wKSBhZG1pdHRlZCBjL28gYWN1dGUgZXhhY2VyYmF0aW9uIG9mIENEIHN5bXB0b21zIChpbmNyZWFzZWQgQk0gZnJlcXVlbmN5LCBzZXZlcmUgYWJkIHBhaW4sIGhlbWF0b2NoZXppYSkgYW5kIHdvcnNlbmluZyBhc2NpdGVzLiBQRSByZXZlYWxzIGRpZmZ1c2UgYWJkIHRlbmRlcm5lc3MsIGh5cGVyYWN0aXZlIEJTLCAoKykgZmx1aWQgd2F2ZSwgYW5kIG1pbGQgSEUgKEFNUyk7IGluaXRpYWwgbGFicyBzaG93IGVsZXZhdGVkIENSUC9FU1IsIHcvdSBmb3IgQy4gZGlmZiBvbmdvaW5nLiBQbGFuIGluY2x1ZGVzIE5QTywgSVYgY29ydGljb3N0ZXJvaWRzLCBicm9hZC1zcGVjdHJ1bSBBYngsIGRhaWx5IHBhcmFjZW50ZXNpcyBwcm4sIHRpdHJhdGUgTGFjdHVsb3NlIGZvciBIRSwgYW5kIGNsb3NlIG1vbml0b3JpbmcgYnkgR0kvSGVwYXRvbG9neSBzdmM7IGYvdSBFR0QvY29sb25vc2NvcHkgcGxhbm5lZC4="
+            }
+          }
+        ]
+      },
+      "request": {
+        "method": "POST",
+        "url": "DocumentReference"
+      }
+    },
+    {
+      "fullUrl": "urn:uuid:90ecda56-8795-4ae6-85fe-d5529a657aa7",
+      "resource": {
+        "resourceType": "Patient",
+        "name": [
+          {
+            "family": "Okafor",
+            "given": [
+              "Barnaby"
+            ]
+          }
+        ],
+        "gender": "male",
+        "birthDate": "1955-08-22"
+      },
+      "request": {
+        "method": "POST",
+        "url": "Patient"
+      }
+    },
+    {
+      "fullUrl": "urn:uuid:208d7b05-7fbd-48ee-84e8-ef085cffbfbb",
+      "resource": {
+        "resourceType": "Condition",
+        "clinicalStatus": {
+          "coding": [
+            {
+              "system": "http://terminology.hl7.org/CodeSystem/condition-clinical",
+              "code": "active"
+            }
+          ]
+        },
+        "code": {
+          "coding": [
+            {
+              "system": "http://hl7.org/fhir/sid/icd-10",
+              "code": "M05.89",
+              "display": "Rheumatoid Arthritis, seropositive, multiple sites"
+            }
+          ],
+          "text": "Rheumatoid Arthritis, seropositive, multiple sites"
+        },
+        "subject": {
+          "reference": "urn:uuid:90ecda56-8795-4ae6-85fe-d5529a657aa7"
+        }
+      },
+      "request": {
+        "method": "POST",
+        "url": "Condition"
+      }
+    },
+    {
+      "fullUrl": "urn:uuid:5213c92e-0cb9-431b-ba0a-678b0a2fa8b0",
+      "resource": {
+        "resourceType": "Condition",
+        "clinicalStatus": {
+          "coding": [
+            {
+              "system": "http://terminology.hl7.org/CodeSystem/condition-clinical",
+              "code": "active"
+            }
+          ]
+        },
+        "code": {
+          "coding": [
+            {
+              "system": "http://hl7.org/fhir/sid/icd-10",
+              "code": "M32.14",
+              "display": "Systemic Lupus Erythematosus with renal involvement"
+            }
+          ],
+          "text": "Systemic Lupus Erythematosus with renal involvement"
+        },
+        "subject": {
+          "reference": "urn:uuid:90ecda56-8795-4ae6-85fe-d5529a657aa7"
+        }
+      },
+      "request": {
+        "method": "POST",
+        "url": "Condition"
+      }
+    },
+    {
+      "fullUrl": "urn:uuid:754934e1-b9f8-4241-973f-eb1a2540e5db",
+      "resource": {
+        "resourceType": "MedicationRequest",
+        "status": "active",
+        "intent": "order",
+        "medicationCodeableConcept": {
+          "text": "Methotrexate"
+        },
+        "subject": {
+          "reference": "urn:uuid:90ecda56-8795-4ae6-85fe-d5529a657aa7"
+        },
+        "dosageInstruction": [
+          {
+            "text": "15 mg SC QWK on Monday"
+          }
+        ]
+      },
+      "request": {
+        "method": "POST",
+        "url": "MedicationRequest"
+      }
+    },
+    {
+      "fullUrl": "urn:uuid:70e43461-fa57-444b-adb6-f54bdeaef38a",
+      "resource": {
+        "resourceType": "MedicationRequest",
+        "status": "active",
+        "intent": "order",
+        "medicationCodeableConcept": {
+          "text": "Prednisone"
+        },
+        "subject": {
+          "reference": "urn:uuid:90ecda56-8795-4ae6-85fe-d5529a657aa7"
+        },
+        "dosageInstruction": [
+          {
+            "text": "10 mg PO QD x 7 days, then taper to 5 mg PO QD"
+          }
+        ]
+      },
+      "request": {
+        "method": "POST",
+        "url": "MedicationRequest"
+      }
+    },
+    {
+      "fullUrl": "urn:uuid:07547c7c-56a1-4b5e-baec-911afc87af4a",
+      "resource": {
+        "resourceType": "MedicationRequest",
+        "status": "active",
+        "intent": "order",
+        "medicationCodeableConcept": {
+          "text": "Hydroxychloroquine"
+        },
+        "subject": {
+          "reference": "urn:uuid:90ecda56-8795-4ae6-85fe-d5529a657aa7"
+        },
+        "dosageInstruction": [
+          {
+            "text": "200 mg PO BID with food"
+          }
+        ]
+      },
+      "request": {
+        "method": "POST",
+        "url": "MedicationRequest"
+      }
+    },
+    {
+      "fullUrl": "urn:uuid:c0bfddee-bf3f-4ef9-952c-9dfd447e12b8",
+      "resource": {
+        "resourceType": "DocumentReference",
+        "status": "current",
+        "subject": {
+          "reference": "urn:uuid:90ecda56-8795-4ae6-85fe-d5529a657aa7"
+        },
+        "type": {
+          "coding": [
+            {
+              "system": "http://loinc.org",
+              "code": "11488-4",
+              "display": "Consult note"
+            }
+          ]
+        },
+        "content": [
+          {
+            "attachment": {
+              "contentType": "text/plain",
+              "data": "UHQgcHJlc2VudHMgd2l0aCBhY3V0ZSBleGFjZXJiYXRpb24gb2YgUkEgd2l0aCBwb2x5YXJ0aWN1bGFyIHBhaW4gKE1DUHMsIFBJUHMsIHdyaXN0cywga25lZXMpIGFuZCBpbmNyZWFzZWQgZmF0aWd1ZSAoYy9vID4gNy8xMCBWQVMgcGFpbikuIE9iamVjdGl2ZSBmaW5kaW5ncyBpbmNsdWRlIHN5bm92aXRpcywgc3dlbGxpbmcsIGFuZCB3YXJtdGggaW4gYWZmZWN0ZWQgam9pbnRzOyBDUlAgNDUgbWcvTCwgRVNSIDYwIG1tL2hyLiBQbGFuIGludm9sdmVzIGluaXRpYXRpbmcgUHJlZG5pc29uZSB0YXBlciwgb3B0aW1pemluZyBNZXRob3RyZXhhdGUgZG9zZSwgdmlnaWxhbnQgbW9uaXRvcmluZyBmb3IgZmxhcmVzL3NpZGUgZWZmZWN0cyAoU0VzKSwgYW5kIEYvVSBpbiAyIHdrcyBpbiByaGV1bWF0b2xvZ3kgY2xpbmljLg=="
+            }
+          }
+        ]
+      },
+      "request": {
+        "method": "POST",
+        "url": "DocumentReference"
+      }
+    },
+    {
+      "fullUrl": "urn:uuid:fddfbcc0-20cf-4253-9fee-3ac31a268905",
+      "resource": {
+        "resourceType": "Patient",
+        "name": [
+          {
+            "family": "Nkosi",
+            "given": [
+              "Arthur"
+            ]
+          }
+        ],
+        "gender": "male",
+        "birthDate": "1950-05-12"
+      },
+      "request": {
+        "method": "POST",
+        "url": "Patient"
+      }
+    },
+    {
+      "fullUrl": "urn:uuid:a3346c4e-b0a7-4e4e-9f40-77111ddfa15e",
+      "resource": {
+        "resourceType": "Condition",
+        "clinicalStatus": {
+          "coding": [
+            {
+              "system": "http://terminology.hl7.org/CodeSystem/condition-clinical",
+              "code": "active"
+            }
+          ]
+        },
+        "code": {
+          "coding": [
+            {
+              "system": "http://hl7.org/fhir/sid/icd-10",
+              "code": "G30.9",
+              "display": "Alzheimer's Disease, unspecified dementia"
+            }
+          ],
+          "text": "Alzheimer's Disease, unspecified dementia"
+        },
+        "subject": {
+          "reference": "urn:uuid:fddfbcc0-20cf-4253-9fee-3ac31a268905"
+        }
+      },
+      "request": {
+        "method": "POST",
+        "url": "Condition"
+      }
+    },
+    {
+      "fullUrl": "urn:uuid:354abb4a-0afc-4e84-a925-624b91e04717",
+      "resource": {
+        "resourceType": "Condition",
+        "clinicalStatus": {
+          "coding": [
+            {
+              "system": "http://terminology.hl7.org/CodeSystem/condition-clinical",
+              "code": "active"
+            }
+          ]
+        },
+        "code": {
+          "coding": [
+            {
+              "system": "http://hl7.org/fhir/sid/icd-10",
+              "code": "G20",
+              "display": "Parkinson's disease"
+            }
+          ],
+          "text": "Parkinson's disease"
+        },
+        "subject": {
+          "reference": "urn:uuid:fddfbcc0-20cf-4253-9fee-3ac31a268905"
+        }
+      },
+      "request": {
+        "method": "POST",
+        "url": "Condition"
+      }
+    },
+    {
+      "fullUrl": "urn:uuid:1da39670-94c9-4817-8962-17dfeefff2c0",
+      "resource": {
+        "resourceType": "MedicationRequest",
+        "status": "active",
+        "intent": "order",
+        "medicationCodeableConcept": {
+          "text": "Donepezil"
+        },
+        "subject": {
+          "reference": "urn:uuid:fddfbcc0-20cf-4253-9fee-3ac31a268905"
+        },
+        "dosageInstruction": [
+          {
+            "text": "10 mg PO qHS"
+          }
+        ]
+      },
+      "request": {
+        "method": "POST",
+        "url": "MedicationRequest"
+      }
+    },
+    {
+      "fullUrl": "urn:uuid:11ce6030-7ff0-4de9-8c99-fa645bcdcb52",
+      "resource": {
+        "resourceType": "MedicationRequest",
+        "status": "active",
+        "intent": "order",
+        "medicationCodeableConcept": {
+          "text": "Levodopa-Carbidopa"
+        },
+        "subject": {
+          "reference": "urn:uuid:fddfbcc0-20cf-4253-9fee-3ac31a268905"
+        },
+        "dosageInstruction": [
+          {
+            "text": "25/100 mg PO TID"
+          }
+        ]
+      },
+      "request": {
+        "method": "POST",
+        "url": "MedicationRequest"
+      }
+    },
+    {
+      "fullUrl": "urn:uuid:64cd7019-e21b-466f-ad2b-a4fab95d7cfd",
+      "resource": {
+        "resourceType": "MedicationRequest",
+        "status": "active",
+        "intent": "order",
+        "medicationCodeableConcept": {
+          "text": "Memantine"
+        },
+        "subject": {
+          "reference": "urn:uuid:fddfbcc0-20cf-4253-9fee-3ac31a268905"
+        },
+        "dosageInstruction": [
+          {
+            "text": "10 mg PO BID"
+          }
+        ]
+      },
+      "request": {
+        "method": "POST",
+        "url": "MedicationRequest"
+      }
+    },
+    {
+      "fullUrl": "urn:uuid:ab4a4d33-8c8d-490b-8764-be10c72228d4",
+      "resource": {
+        "resourceType": "DocumentReference",
+        "status": "current",
+        "subject": {
+          "reference": "urn:uuid:fddfbcc0-20cf-4253-9fee-3ac31a268905"
+        },
+        "type": {
+          "coding": [
+            {
+              "system": "http://loinc.org",
+              "code": "11488-4",
+              "display": "Consult note"
+            }
+          ]
+        },
+        "content": [
+          {
+            "attachment": {
+              "contentType": "text/plain",
+              "data": "UHQgdy8gaC9vIEFEICYgUEQgcHJlc2VudHMgdG8gRUQgYy9vIGluY3JlYXNlZCBjb25mdXNpb24sIGdhaXQgaW5zdGFiaWxpdHksIGFuZCBzZXZlcmUgdHJlbW9yIHggMyBkYXlzLiBOZXVybyBleGFtIHJldmVhbHMgc2lnbmlmaWNhbnQgY29nIGRlY2xpbmUsIGJyYWR5a2luZXNpYSwgYW5kIHJpZ2lkaXR5LiBBL1A6IEluaXRpYXRlIHRpdHJhdGlvbiBvZiBjdXJyZW50IFBEIG1lZHM7IHIvbyBpbmZlY3Rpb3VzIGV0aW9sb2d5IGdpdmVuIGFjdXRlIGRlY2xpbmU7IG9yZGVyZWQgc3RhdCBsYWJzLCBicmFpbiBNUkksIGFuZCBVL0EuIFdpbGwgbW9uaXRvciBjbG9zZWx5LiBGL1Ugd2l0aCBuZXVybyBpbiAxIHdrLg=="
+            }
+          }
+        ]
+      },
+      "request": {
+        "method": "POST",
+        "url": "DocumentReference"
+      }
+    },
+    {
+      "fullUrl": "urn:uuid:e728516b-fd8c-4809-915d-464017a6f109",
+      "resource": {
+        "resourceType": "Patient",
+        "name": [
+          {
+            "family": "Cohen",
+            "given": [
+              "Eleanor"
+            ]
+          }
+        ],
+        "gender": "male",
+        "birthDate": "1960-08-22"
+      },
+      "request": {
+        "method": "POST",
+        "url": "Patient"
+      }
+    },
+    {
+      "fullUrl": "urn:uuid:a7d91b16-3e5f-4cfb-b5e6-d2a7773c5f76",
+      "resource": {
+        "resourceType": "Condition",
+        "clinicalStatus": {
+          "coding": [
+            {
+              "system": "http://terminology.hl7.org/CodeSystem/condition-clinical",
+              "code": "active"
+            }
+          ]
+        },
+        "code": {
+          "coding": [
+            {
+              "system": "http://hl7.org/fhir/sid/icd-10",
+              "code": "M05.89",
+              "display": "Seropositive Rheumatoid Arthritis with systemic involvement"
+            }
+          ],
+          "text": "Seropositive Rheumatoid Arthritis with systemic involvement"
+        },
+        "subject": {
+          "reference": "urn:uuid:e728516b-fd8c-4809-915d-464017a6f109"
+        }
+      },
+      "request": {
+        "method": "POST",
+        "url": "Condition"
+      }
+    },
+    {
+      "fullUrl": "urn:uuid:d784c958-c642-4416-b139-d182eae33eb1",
+      "resource": {
+        "resourceType": "Condition",
+        "clinicalStatus": {
+          "coding": [
+            {
+              "system": "http://terminology.hl7.org/CodeSystem/condition-clinical",
+              "code": "active"
+            }
+          ]
+        },
+        "code": {
+          "coding": [
+            {
+              "system": "http://hl7.org/fhir/sid/icd-10",
+              "code": "M32.14",
+              "display": "Systemic Lupus Erythematosus with lupus nephritis and ESRD"
+            }
+          ],
+          "text": "Systemic Lupus Erythematosus with lupus nephritis and ESRD"
+        },
+        "subject": {
+          "reference": "urn:uuid:e728516b-fd8c-4809-915d-464017a6f109"
+        }
+      },
+      "request": {
+        "method": "POST",
+        "url": "Condition"
+      }
+    },
+    {
+      "fullUrl": "urn:uuid:f8d5a6d6-0ffe-4299-a949-7526be01017b",
+      "resource": {
+        "resourceType": "MedicationRequest",
+        "status": "active",
+        "intent": "order",
+        "medicationCodeableConcept": {
+          "text": "Methotrexate"
+        },
+        "subject": {
+          "reference": "urn:uuid:e728516b-fd8c-4809-915d-464017a6f109"
+        },
+        "dosageInstruction": [
+          {
+            "text": "15 mg SC weekly, with Folic Acid 1 mg PO daily"
+          }
+        ]
+      },
+      "request": {
+        "method": "POST",
+        "url": "MedicationRequest"
+      }
+    },
+    {
+      "fullUrl": "urn:uuid:92e400f2-7395-4a1b-a74b-cd5e8e7bec11",
+      "resource": {
+        "resourceType": "MedicationRequest",
+        "status": "active",
+        "intent": "order",
+        "medicationCodeableConcept": {
+          "text": "Adalimumab"
+        },
+        "subject": {
+          "reference": "urn:uuid:e728516b-fd8c-4809-915d-464017a6f109"
+        },
+        "dosageInstruction": [
+          {
+            "text": "40 mg SC every 2 weeks"
+          }
+        ]
+      },
+      "request": {
+        "method": "POST",
+        "url": "MedicationRequest"
+      }
+    },
+    {
+      "fullUrl": "urn:uuid:e185273f-b080-455f-be44-2889c96a0840",
+      "resource": {
+        "resourceType": "MedicationRequest",
+        "status": "active",
+        "intent": "order",
+        "medicationCodeableConcept": {
+          "text": "Prednisone"
+        },
+        "subject": {
+          "reference": "urn:uuid:e728516b-fd8c-4809-915d-464017a6f109"
+        },
+        "dosageInstruction": [
+          {
+            "text": "10 mg PO daily, taper as directed for flares"
+          }
+        ]
+      },
+      "request": {
+        "method": "POST",
+        "url": "MedicationRequest"
+      }
+    },
+    {
+      "fullUrl": "urn:uuid:2490f0a0-a501-4f4e-8f2d-643f486b1cfe",
+      "resource": {
+        "resourceType": "DocumentReference",
+        "status": "current",
+        "subject": {
+          "reference": "urn:uuid:e728516b-fd8c-4809-915d-464017a6f109"
+        },
+        "type": {
+          "coding": [
+            {
+              "system": "http://loinc.org",
+              "code": "11488-4",
+              "display": "Consult note"
+            }
+          ]
+        },
+        "content": [
+          {
+            "attachment": {
+              "contentType": "text/plain",
+              "data": "UHQuIEVsZWFub3IgQ29oZW4sIDYzIHkvbyBNLCBwcmVzZW50cyB0byBSaGV1bSBjbGluaWMgYy9vIHdvcnNlbmluZyBwb2x5YXJ0aHJhbGdpYSBhbmQgZmF0aWd1ZSB4IDMgd2tzIHdpdGggaW5jcmVhc2VkIGpvaW50IHN3ZWxsaW5nIGluIE1DUHMvUElQcywgZGVzcGl0ZSBjdXJyZW50IERNQVJEIHJlZ2ltZW4uIEV4YW0gcmV2ZWFscyBkZWZpbml0ZSBzeW5vdml0aXMgaW4gYmlsYXRlcmFsIHdyaXN0cywgTUNQcyAoMi0zKSwgYW5kIFBJUHMgKDItNCk7IGxhYnMgc2hvdyBFU1IgNDUsIENSUCAxOCBtZy9MLCBzdWdnZXN0aW5nIGFuIFJBIGZsYXJlIGFuZCBvbmdvaW5nIFNMRSBhY3Rpdml0eSBnaXZlbiBoL28gbHVwdXMgbmVwaHJpdGlzLiBBL1A6IEluaXRpYXRlIFByZWRuaXNvbmUgMjAgbWcgUE8gZGFpbHkgeCA1ZCwgdGhlbiB0YXBlciBieSA1bWcgcTNkOyBsYWJzIG9yZGVyZWQ6IEFOQSwgYW50aS1kc0ROQSwgQzMvQzQuIFdpbGwgcmUtZXZhbCByZXNwb25zZSBhbmQgY29uc2lkZXIgYmlvbG9naWMgZG9zZSBlc2NhbGF0aW9uIGlmIG5vIGltcHJvdmVtZW50IGF0IEYvVSBpbiAyIHdrcy4="
+            }
+          }
+        ]
+      },
+      "request": {
+        "method": "POST",
+        "url": "DocumentReference"
+      }
+    },
+    {
+      "fullUrl": "urn:uuid:4adb64aa-f84c-4c79-b0da-b2816d4ef87d",
+      "resource": {
+        "resourceType": "Patient",
+        "name": [
+          {
+            "family": "Novak",
+            "given": [
+              "Barnaby"
+            ]
+          }
+        ],
+        "gender": "male",
+        "birthDate": "1950-05-12"
+      },
+      "request": {
+        "method": "POST",
+        "url": "Patient"
+      }
+    },
+    {
+      "fullUrl": "urn:uuid:00c2f11d-fef8-4e4b-9444-205ceca6914e",
+      "resource": {
+        "resourceType": "Condition",
+        "clinicalStatus": {
+          "coding": [
+            {
+              "system": "http://terminology.hl7.org/CodeSystem/condition-clinical",
+              "code": "active"
+            }
+          ]
+        },
+        "code": {
+          "coding": [
+            {
+              "system": "http://hl7.org/fhir/sid/icd-10",
+              "code": "J44.1",
+              "display": "Chronic Obstructive Pulmonary Disease, severe with acute exacerbation"
+            }
+          ],
+          "text": "Chronic Obstructive Pulmonary Disease, severe with acute exacerbation"
+        },
+        "subject": {
+          "reference": "urn:uuid:4adb64aa-f84c-4c79-b0da-b2816d4ef87d"
+        }
+      },
+      "request": {
+        "method": "POST",
+        "url": "Condition"
+      }
+    },
+    {
+      "fullUrl": "urn:uuid:dbed3b60-f3c4-4db5-9883-80302efd1ad7",
+      "resource": {
+        "resourceType": "Condition",
+        "clinicalStatus": {
+          "coding": [
+            {
+              "system": "http://terminology.hl7.org/CodeSystem/condition-clinical",
+              "code": "active"
+            }
+          ]
+        },
+        "code": {
+          "coding": [
+            {
+              "system": "http://hl7.org/fhir/sid/icd-10",
+              "code": "J84.112",
+              "display": "Idiopathic Pulmonary Fibrosis"
+            }
+          ],
+          "text": "Idiopathic Pulmonary Fibrosis"
+        },
+        "subject": {
+          "reference": "urn:uuid:4adb64aa-f84c-4c79-b0da-b2816d4ef87d"
+        }
+      },
+      "request": {
+        "method": "POST",
+        "url": "Condition"
+      }
+    },
+    {
+      "fullUrl": "urn:uuid:106e14d9-c682-4e9d-b5e9-5d02e4885fbd",
+      "resource": {
+        "resourceType": "MedicationRequest",
+        "status": "active",
+        "intent": "order",
+        "medicationCodeableConcept": {
+          "text": "Fluticasone/Salmeterol 250/50 mcg Inhaler"
+        },
+        "subject": {
+          "reference": "urn:uuid:4adb64aa-f84c-4c79-b0da-b2816d4ef87d"
+        },
+        "dosageInstruction": [
+          {
+            "text": "Inhale 1 puff BID"
+          }
+        ]
+      },
+      "request": {
+        "method": "POST",
+        "url": "MedicationRequest"
+      }
+    },
+    {
+      "fullUrl": "urn:uuid:b1f05a48-2fc3-414b-bf2e-69bdfcb515e3",
+      "resource": {
+        "resourceType": "MedicationRequest",
+        "status": "active",
+        "intent": "order",
+        "medicationCodeableConcept": {
+          "text": "Roflumilast 500 mcg tablet"
+        },
+        "subject": {
+          "reference": "urn:uuid:4adb64aa-f84c-4c79-b0da-b2816d4ef87d"
+        },
+        "dosageInstruction": [
+          {
+            "text": "Take 1 tab PO QD"
+          }
+        ]
+      },
+      "request": {
+        "method": "POST",
+        "url": "MedicationRequest"
+      }
+    },
+    {
+      "fullUrl": "urn:uuid:f4a93699-15d7-4df5-b133-8cccbb9293bd",
+      "resource": {
+        "resourceType": "MedicationRequest",
+        "status": "active",
+        "intent": "order",
+        "medicationCodeableConcept": {
+          "text": "Pirfenidone 267 mg capsule"
+        },
+        "subject": {
+          "reference": "urn:uuid:4adb64aa-f84c-4c79-b0da-b2816d4ef87d"
+        },
+        "dosageInstruction": [
+          {
+            "text": "Take 1 cap PO TID with food"
+          }
+        ]
+      },
+      "request": {
+        "method": "POST",
+        "url": "MedicationRequest"
+      }
+    },
+    {
+      "fullUrl": "urn:uuid:83c1e56d-9eee-473d-9a2b-acde5aec1e61",
+      "resource": {
+        "resourceType": "DocumentReference",
+        "status": "current",
+        "subject": {
+          "reference": "urn:uuid:4adb64aa-f84c-4c79-b0da-b2816d4ef87d"
+        },
+        "type": {
+          "coding": [
+            {
+              "system": "http://loinc.org",
+              "code": "11488-4",
+              "display": "Consult note"
+            }
+          ]
+        },
+        "content": [
+          {
+            "attachment": {
+              "contentType": "text/plain",
+              "data": "UHQgcHJlc2VudHMgdG8gRUQgYy9vIGluY3JlYXNlZCBTT0IsIHByb2R1Y3RpdmUgY291Z2gsIGFuZCB3aGVlemluZyB4IDMgZGF5cywgY29uc2lzdGVudCB3aXRoIGFjdXRlIENPUEQgZXhhY2VyYmF0aW9uLiBPMiBzYXQgODglIG9uIFJBLCBpbXByb3ZlZCB0byA5MiUgb24gMkwgTkM7IENYUiBzaG93cyBubyBhY3V0ZSBpbmZpbHRyYXRlLiBJbml0aWF0ZWQgbmVidWxpemVkIGFsYnV0ZXJvbC9pcHJhdHJvcGl1bSwgSVYgY29ydGljb3N0ZXJvaWRzLCBhbmQgYnJvYWQtc3BlY3RydW0gQWJ4OyBjb250aW51ZSBjbG9zZSByZXNwIG1vbml0b3Jpbmc7IHBsYW4gZm9yIGRpc2NoYXJnZSB0byBob21lIHcvIGhvbWUgTzIgaWYgc3RhYmxlIHggMjQgaHJzLg=="
+            }
+          }
+        ]
+      },
+      "request": {
+        "method": "POST",
+        "url": "DocumentReference"
+      }
+    },
+    {
+      "fullUrl": "urn:uuid:d5aacf14-bf1a-4056-aa4b-e1751a41d895",
+      "resource": {
+        "resourceType": "Patient",
+        "name": [
+          {
+            "family": "Sterling",
+            "given": [
+              "Silas"
+            ]
+          }
+        ],
+        "gender": "male",
+        "birthDate": "1950-05-12"
+      },
+      "request": {
+        "method": "POST",
+        "url": "Patient"
+      }
+    },
+    {
+      "fullUrl": "urn:uuid:5f07d10b-f5c3-49c1-90b2-cded80a877af",
+      "resource": {
+        "resourceType": "Condition",
+        "clinicalStatus": {
+          "coding": [
+            {
+              "system": "http://terminology.hl7.org/CodeSystem/condition-clinical",
+              "code": "active"
+            }
+          ]
+        },
+        "code": {
+          "coding": [
+            {
+              "system": "http://hl7.org/fhir/sid/icd-10",
+              "code": "K50.111",
+              "display": "Crohn's Disease with intestinal obstruction"
+            }
+          ],
+          "text": "Crohn's Disease with intestinal obstruction"
+        },
+        "subject": {
+          "reference": "urn:uuid:d5aacf14-bf1a-4056-aa4b-e1751a41d895"
+        }
+      },
+      "request": {
+        "method": "POST",
+        "url": "Condition"
+      }
+    },
+    {
+      "fullUrl": "urn:uuid:09888414-f6be-4110-b382-98a1522c7760",
+      "resource": {
+        "resourceType": "Condition",
+        "clinicalStatus": {
+          "coding": [
+            {
+              "system": "http://terminology.hl7.org/CodeSystem/condition-clinical",
+              "code": "active"
+            }
+          ]
+        },
+        "code": {
+          "coding": [
+            {
+              "system": "http://hl7.org/fhir/sid/icd-10",
+              "code": "K85.02",
+              "display": "Severe Acute Pancreatitis with necrosis"
+            }
+          ],
+          "text": "Severe Acute Pancreatitis with necrosis"
+        },
+        "subject": {
+          "reference": "urn:uuid:d5aacf14-bf1a-4056-aa4b-e1751a41d895"
+        }
+      },
+      "request": {
+        "method": "POST",
+        "url": "Condition"
+      }
+    },
+    {
+      "fullUrl": "urn:uuid:0ad1527f-e254-44ae-a90a-494fb8f5d626",
+      "resource": {
+        "resourceType": "MedicationRequest",
+        "status": "active",
+        "intent": "order",
+        "medicationCodeableConcept": {
+          "text": "Infliximab (Remicade)"
+        },
+        "subject": {
+          "reference": "urn:uuid:d5aacf14-bf1a-4056-aa4b-e1751a41d895"
+        },
+        "dosageInstruction": [
+          {
+            "text": "5 mg/kg IV infusion q8wks"
+          }
+        ]
+      },
+      "request": {
+        "method": "POST",
+        "url": "MedicationRequest"
+      }
+    },
+    {
+      "fullUrl": "urn:uuid:329faabb-5db5-44a8-8e4a-c7470f513ad0",
+      "resource": {
+        "resourceType": "MedicationRequest",
+        "status": "active",
+        "intent": "order",
+        "medicationCodeableConcept": {
+          "text": "Pancrelipase (Creon)"
+        },
+        "subject": {
+          "reference": "urn:uuid:d5aacf14-bf1a-4056-aa4b-e1751a41d895"
+        },
+        "dosageInstruction": [
+          {
+            "text": "36,000 units PO with meals and snacks"
+          }
+        ]
+      },
+      "request": {
+        "method": "POST",
+        "url": "MedicationRequest"
+      }
+    },
+    {
+      "fullUrl": "urn:uuid:0ab5480f-1381-4cc2-b6b2-b4588a2f17d9",
+      "resource": {
+        "resourceType": "MedicationRequest",
+        "status": "active",
+        "intent": "order",
+        "medicationCodeableConcept": {
+          "text": "Prednisone"
+        },
+        "subject": {
+          "reference": "urn:uuid:d5aacf14-bf1a-4056-aa4b-e1751a41d895"
+        },
+        "dosageInstruction": [
+          {
+            "text": "40 mg PO daily x 7 days, then taper"
+          }
+        ]
+      },
+      "request": {
+        "method": "POST",
+        "url": "MedicationRequest"
+      }
+    },
+    {
+      "fullUrl": "urn:uuid:1a29ac42-6ff6-41d3-abb3-dac723d6422e",
+      "resource": {
+        "resourceType": "DocumentReference",
+        "status": "current",
+        "subject": {
+          "reference": "urn:uuid:d5aacf14-bf1a-4056-aa4b-e1751a41d895"
+        },
+        "type": {
+          "coding": [
+            {
+              "system": "http://loinc.org",
+              "code": "11488-4",
+              "display": "Consult note"
+            }
+          ]
+        },
+        "content": [
+          {
+            "attachment": {
+              "contentType": "text/plain",
+              "data": "UHQgcHJlc2VudHMgdG8gRUQgYy9vIHNldmVyZSBSVVEvZXBpZ2FzdHJpYyBwYWluIHggMjRoLCA4LzEwLCBhc3NvYy4gdy8gbi92LCBmZWJyaWxlIHRvIDEwMS4yRi4gUEU6IFRUUCBlcGlnYXN0cml1bSwgbWlsZCBndWFyZGluZywgK0N1bGxlbidzIHNpZ24uIEFkbWl0dGVkIGZvciBhZ2dyZXNzaXZlIElWRiwgTlBPLCBwYWluIGNvbnRyb2wsIHNlcmlhbCBhbXlsYXNlL2xpcGFzZSwgYW5kIENUIGFiZC9wZWx2aXMgdG8gZXZhbCBmb3Igc2V2ZXJlIGFjdXRlIHBhbmNyZWF0aXRpcyB2cy4gcGVyZi4="
+            }
+          }
+        ]
+      },
+      "request": {
+        "method": "POST",
+        "url": "DocumentReference"
+      }
+    },
+    {
+      "fullUrl": "urn:uuid:97abd3ae-fa83-4e53-af3a-7c279d99bf7b",
+      "resource": {
+        "resourceType": "Patient",
+        "name": [
+          {
+            "family": "Okafor",
+            "given": [
+              "Oliver"
+            ]
+          }
+        ],
+        "gender": "male",
+        "birthDate": "1950-05-12"
+      },
+      "request": {
+        "method": "POST",
+        "url": "Patient"
+      }
+    },
+    {
+      "fullUrl": "urn:uuid:f8bdb039-f49a-4c28-ad7a-5f837117f77e",
+      "resource": {
+        "resourceType": "Condition",
+        "clinicalStatus": {
+          "coding": [
+            {
+              "system": "http://terminology.hl7.org/CodeSystem/condition-clinical",
+              "code": "active"
+            }
+          ]
+        },
+        "code": {
+          "coding": [
+            {
+              "system": "http://hl7.org/fhir/sid/icd-10",
+              "code": "K50.114",
+              "display": "Severe Crohn's Disease with Perianal Fistulizing Disease"
+            }
+          ],
+          "text": "Severe Crohn's Disease with Perianal Fistulizing Disease"
+        },
+        "subject": {
+          "reference": "urn:uuid:97abd3ae-fa83-4e53-af3a-7c279d99bf7b"
+        }
+      },
+      "request": {
+        "method": "POST",
+        "url": "Condition"
+      }
+    },
+    {
+      "fullUrl": "urn:uuid:ed3e839c-2ca7-48cc-aaf1-34f45a5897cf",
+      "resource": {
+        "resourceType": "Condition",
+        "clinicalStatus": {
+          "coding": [
+            {
+              "system": "http://terminology.hl7.org/CodeSystem/condition-clinical",
+              "code": "active"
+            }
+          ]
+        },
+        "code": {
+          "coding": [
+            {
+              "system": "http://hl7.org/fhir/sid/icd-10",
+              "code": "K74.60",
+              "display": "Decompensated Cirrhosis secondary to NASH with Hepatic Encephalopathy and Ascites"
+            }
+          ],
+          "text": "Decompensated Cirrhosis secondary to NASH with Hepatic Encephalopathy and Ascites"
+        },
+        "subject": {
+          "reference": "urn:uuid:97abd3ae-fa83-4e53-af3a-7c279d99bf7b"
+        }
+      },
+      "request": {
+        "method": "POST",
+        "url": "Condition"
+      }
+    },
+    {
+      "fullUrl": "urn:uuid:eccacac2-3f7d-4b6b-870a-a5eff634dd98",
+      "resource": {
+        "resourceType": "MedicationRequest",
+        "status": "active",
+        "intent": "order",
+        "medicationCodeableConcept": {
+          "text": "Adalimumab (Humira)"
+        },
+        "subject": {
+          "reference": "urn:uuid:97abd3ae-fa83-4e53-af3a-7c279d99bf7b"
+        },
+        "dosageInstruction": [
+          {
+            "text": "40 mg SC QOW after initial loading regimen; monitor for signs of infection."
+          }
+        ]
+      },
+      "request": {
+        "method": "POST",
+        "url": "MedicationRequest"
+      }
+    },
+    {
+      "fullUrl": "urn:uuid:eae6e574-481b-4dcc-9ad4-3ccf301b4d13",
+      "resource": {
+        "resourceType": "MedicationRequest",
+        "status": "active",
+        "intent": "order",
+        "medicationCodeableConcept": {
+          "text": "Lactulose"
+        },
+        "subject": {
+          "reference": "urn:uuid:97abd3ae-fa83-4e53-af3a-7c279d99bf7b"
+        },
+        "dosageInstruction": [
+          {
+            "text": "30 mL PO TID, titrate to 2-3 soft bowel movements per day, monitor ammonia levels."
+          }
+        ]
+      },
+      "request": {
+        "method": "POST",
+        "url": "MedicationRequest"
+      }
+    },
+    {
+      "fullUrl": "urn:uuid:5cb15ad0-4033-4dac-9a3c-64cfa96ce794",
+      "resource": {
+        "resourceType": "MedicationRequest",
+        "status": "active",
+        "intent": "order",
+        "medicationCodeableConcept": {
+          "text": "Rifaximin"
+        },
+        "subject": {
+          "reference": "urn:uuid:97abd3ae-fa83-4e53-af3a-7c279d99bf7b"
+        },
+        "dosageInstruction": [
+          {
+            "text": "550 mg PO BID with meals for hepatic encephalopathy prophylaxis."
+          }
+        ]
+      },
+      "request": {
+        "method": "POST",
+        "url": "MedicationRequest"
+      }
+    },
+    {
+      "fullUrl": "urn:uuid:e65a0836-fc3c-4e1a-8112-08840a7652ab",
+      "resource": {
+        "resourceType": "DocumentReference",
+        "status": "current",
+        "subject": {
+          "reference": "urn:uuid:97abd3ae-fa83-4e53-af3a-7c279d99bf7b"
+        },
+        "type": {
+          "coding": [
+            {
+              "system": "http://loinc.org",
+              "code": "11488-4",
+              "display": "Consult note"
+            }
+          ]
+        },
+        "content": [
+          {
+            "attachment": {
+              "contentType": "text/plain",
+              "data": "UHQgT2xpdmVyIE9rYWZvciwgYSA3NCB5L28gTSB3LyBoeCBvZiBzZXZlcmUgQ0QgJiBkZWNvbXBlbnNhdGVkIGNpcnJob3NpcywgcHJlc2VudHMgdG8gRUQgYy9vIHByb2dyZXNzaXZlbHkgd29yc2VuaW5nIFJMUSBhYmQgcGFpbiwgaW5jcmVhc2VkIHN0b21hIG91dHB1dCwgJiBpbnRlcm1pdHRlbnQgY29uZnVzaW9uIHggNDhoLiBQRSByZXZlYWxzIGRpZmZ1c2UgVFRQIGluIGFiZCwgUiBwZXJpYW5hbCBpbmR1cmF0aW9uLCBSIHNpZGVkIGVkZW1hLCBhbmQgYXN0ZXJpeGlzOyBpbml0aWFsIGxhYnMgc2hvdyBzaWduaWZpY2FudCBsZXVrb2N5dG9zaXMsIGVsZXZhdGVkIENSUCwgTkgzIDExMCwgQ3IgMS44LCBhbmQgbmV3IG9uc2V0IFNCUCBvbiBwYXJhY2VudGVzaXMuIEFkbWl0dGVkIHRvIElDVSwgaW5pdGlhdGVkIElWIEFieCAoY2Vmb3RheGltZSwgbWV0cm9uaWRhem9sZSksIElWIGNvcnRpY29zdGVyb2lkcyAobWV0aHlscHJlZG5pc29sb25lKSwgYWRqdXN0ZWQgbGFjdHVsb3NlL3JpZmF4aW1pbiwgc3RyaWN0IEkvTywgZGFpbHkgd2VpZ2h0cywgYW5kIGYvdSBjb2xvbm9zY29weS9FR0Qgc2NoZWR1bGVkIHBvc3Qtc3RhYmlsaXphdGlvbi4="
+            }
+          }
+        ]
+      },
+      "request": {
+        "method": "POST",
+        "url": "DocumentReference"
+      }
+    },
+    {
+      "fullUrl": "urn:uuid:1fe41403-259f-4103-af8d-85c9d7b57bbf",
+      "resource": {
+        "resourceType": "Patient",
+        "name": [
+          {
+            "family": "Chang",
+            "given": [
+              "Nadia"
+            ]
+          }
+        ],
+        "gender": "male",
+        "birthDate": "1955-08-21"
+      },
+      "request": {
+        "method": "POST",
+        "url": "Patient"
+      }
+    },
+    {
+      "fullUrl": "urn:uuid:f62f8e5e-7b2d-44e8-ab38-388b4025ec01",
+      "resource": {
+        "resourceType": "Condition",
+        "clinicalStatus": {
+          "coding": [
+            {
+              "system": "http://terminology.hl7.org/CodeSystem/condition-clinical",
+              "code": "active"
+            }
+          ]
+        },
+        "code": {
+          "coding": [
+            {
+              "system": "http://hl7.org/fhir/sid/icd-10",
+              "code": "I50.22",
+              "display": "Congestive Heart Failure, chronic systolic"
+            }
+          ],
+          "text": "Congestive Heart Failure, chronic systolic"
+        },
+        "subject": {
+          "reference": "urn:uuid:1fe41403-259f-4103-af8d-85c9d7b57bbf"
+        }
+      },
+      "request": {
+        "method": "POST",
+        "url": "Condition"
+      }
+    },
+    {
+      "fullUrl": "urn:uuid:888de11b-4313-4b90-ab44-2e8214d2b2e2",
+      "resource": {
+        "resourceType": "Condition",
+        "clinicalStatus": {
+          "coding": [
+            {
+              "system": "http://terminology.hl7.org/CodeSystem/condition-clinical",
+              "code": "active"
+            }
+          ]
+        },
+        "code": {
+          "coding": [
+            {
+              "system": "http://hl7.org/fhir/sid/icd-10",
+              "code": "I21.01",
+              "display": "Acute Myocardial Infarction, anterior wall"
+            }
+          ],
+          "text": "Acute Myocardial Infarction, anterior wall"
+        },
+        "subject": {
+          "reference": "urn:uuid:1fe41403-259f-4103-af8d-85c9d7b57bbf"
+        }
+      },
+      "request": {
+        "method": "POST",
+        "url": "Condition"
+      }
+    },
+    {
+      "fullUrl": "urn:uuid:b27d0c8a-f338-4212-a41d-6aeede72eaec",
+      "resource": {
+        "resourceType": "MedicationRequest",
+        "status": "active",
+        "intent": "order",
+        "medicationCodeableConcept": {
+          "text": "Lisinopril"
+        },
+        "subject": {
+          "reference": "urn:uuid:1fe41403-259f-4103-af8d-85c9d7b57bbf"
+        },
+        "dosageInstruction": [
+          {
+            "text": "20 mg PO daily for HTN/CHF"
+          }
+        ]
+      },
+      "request": {
+        "method": "POST",
+        "url": "MedicationRequest"
+      }
+    },
+    {
+      "fullUrl": "urn:uuid:16e9c6af-e865-4a71-a8ae-443c1f86dfe2",
+      "resource": {
+        "resourceType": "MedicationRequest",
+        "status": "active",
+        "intent": "order",
+        "medicationCodeableConcept": {
+          "text": "Carvedilol"
+        },
+        "subject": {
+          "reference": "urn:uuid:1fe41403-259f-4103-af8d-85c9d7b57bbf"
+        },
+        "dosageInstruction": [
+          {
+            "text": "12.5 mg PO BID, titrate up to 25 mg PO BID as tolerated"
+          }
+        ]
+      },
+      "request": {
+        "method": "POST",
+        "url": "MedicationRequest"
+      }
+    },
+    {
+      "fullUrl": "urn:uuid:de228d60-a1ec-4cf6-8185-4251db917fc4",
+      "resource": {
+        "resourceType": "MedicationRequest",
+        "status": "active",
+        "intent": "order",
+        "medicationCodeableConcept": {
+          "text": "Atorvastatin"
+        },
+        "subject": {
+          "reference": "urn:uuid:1fe41403-259f-4103-af8d-85c9d7b57bbf"
+        },
+        "dosageInstruction": [
+          {
+            "text": "40 mg PO nightly for HLD/ASCVD prevention"
+          }
+        ]
+      },
+      "request": {
+        "method": "POST",
+        "url": "MedicationRequest"
+      }
+    },
+    {
+      "fullUrl": "urn:uuid:182d0be1-7041-4d3e-abe9-7373a604cc98",
+      "resource": {
+        "resourceType": "DocumentReference",
+        "status": "current",
+        "subject": {
+          "reference": "urn:uuid:1fe41403-259f-4103-af8d-85c9d7b57bbf"
+        },
+        "type": {
+          "coding": [
+            {
+              "system": "http://loinc.org",
+              "code": "11488-4",
+              "display": "Consult note"
+            }
+          ]
+        },
+        "content": [
+          {
+            "attachment": {
+              "contentType": "text/plain",
+              "data": "UHQgcHJlc2VudHMgdG8gRUQgd2l0aCBhY3V0ZSBkZWNvbXBlbnNhdGVkIENIRiBleGFjZXJiYXRpb24sIHdvcnNlbmluZyBET0UgYW5kIDMrIHBpdHRpbmcgZWRlbWEgYmlsYXRlcmFsbHkgaW4gTEVzLiBWUyBzdGFibGUgb24gYWRtaXNzaW9uOyBpbml0aWF0ZWQgSVYgTGFzaXggNDBtZywgY2xvc2VseSBtb25pdG9yaW5nIEkmTywgc2VyaWFsIEJNUCwgYW5kIGRhaWx5IHdlaWdodHMuIENhcmRpb2xvZ3kgY29uc3VsdGVkIGZvciBmdXJ0aGVyIG1hbmFnZW1lbnQ7IHBsYW4gdG8gY29udGludWUgZGl1cmVzaXMsIG9wdGltaXplIEdETVQsIGFuZCBjb25zaWRlciB1cmdlbnQgVFRFIHRvIHJlYXNzZXNzIEVGIHByaW9yIHRvIEQvQy4="
+            }
+          }
+        ]
+      },
+      "request": {
+        "method": "POST",
+        "url": "DocumentReference"
+      }
+    },
+    {
+      "fullUrl": "urn:uuid:76f50cca-1ac4-4e73-ac35-9ce815b8a4d1",
+      "resource": {
+        "resourceType": "Patient",
+        "name": [
+          {
+            "family": "Montgomery",
+            "given": [
+              "Finn"
+            ]
+          }
+        ],
+        "gender": "male",
+        "birthDate": "1950-05-12"
+      },
+      "request": {
+        "method": "POST",
+        "url": "Patient"
+      }
+    },
+    {
+      "fullUrl": "urn:uuid:e2494621-579d-46fe-af14-e4891fdeecdb",
+      "resource": {
+        "resourceType": "Condition",
+        "clinicalStatus": {
+          "coding": [
+            {
+              "system": "http://terminology.hl7.org/CodeSystem/condition-clinical",
+              "code": "active"
+            }
+          ]
+        },
+        "code": {
+          "coding": [
+            {
+              "system": "http://hl7.org/fhir/sid/icd-10",
+              "code": "I50.22",
+              "display": "Chronic Systolic Heart Failure with Reduced Ejection Fraction"
+            }
+          ],
+          "text": "Chronic Systolic Heart Failure with Reduced Ejection Fraction"
+        },
+        "subject": {
+          "reference": "urn:uuid:76f50cca-1ac4-4e73-ac35-9ce815b8a4d1"
+        }
+      },
+      "request": {
+        "method": "POST",
+        "url": "Condition"
+      }
+    },
+    {
+      "fullUrl": "urn:uuid:63252a69-e944-4841-a745-1c2886289a44",
+      "resource": {
+        "resourceType": "Condition",
+        "clinicalStatus": {
+          "coding": [
+            {
+              "system": "http://terminology.hl7.org/CodeSystem/condition-clinical",
+              "code": "active"
+            }
+          ]
+        },
+        "code": {
+          "coding": [
+            {
+              "system": "http://hl7.org/fhir/sid/icd-10",
+              "code": "I48.1",
+              "display": "Persistent Atrial Fibrillation with Rapid Ventricular Response"
+            }
+          ],
+          "text": "Persistent Atrial Fibrillation with Rapid Ventricular Response"
+        },
+        "subject": {
+          "reference": "urn:uuid:76f50cca-1ac4-4e73-ac35-9ce815b8a4d1"
+        }
+      },
+      "request": {
+        "method": "POST",
+        "url": "Condition"
+      }
+    },
+    {
+      "fullUrl": "urn:uuid:530fdce4-bc3d-4229-9d79-4f1c6bb3546b",
+      "resource": {
+        "resourceType": "MedicationRequest",
+        "status": "active",
+        "intent": "order",
+        "medicationCodeableConcept": {
+          "text": "Furosemide"
+        },
+        "subject": {
+          "reference": "urn:uuid:76f50cca-1ac4-4e73-ac35-9ce815b8a4d1"
+        },
+        "dosageInstruction": [
+          {
+            "text": "40 mg PO BID, titrate per UOP and fluid status"
+          }
+        ]
+      },
+      "request": {
+        "method": "POST",
+        "url": "MedicationRequest"
+      }
+    },
+    {
+      "fullUrl": "urn:uuid:6091ac47-f54e-47ad-bfe9-c7d8e20fdb41",
+      "resource": {
+        "resourceType": "MedicationRequest",
+        "status": "active",
+        "intent": "order",
+        "medicationCodeableConcept": {
+          "text": "Carvedilol"
+        },
+        "subject": {
+          "reference": "urn:uuid:76f50cca-1ac4-4e73-ac35-9ce815b8a4d1"
+        },
+        "dosageInstruction": [
+          {
+            "text": "25 mg PO BID, titrate q2wks as tolerated for HR/BP"
+          }
+        ]
+      },
+      "request": {
+        "method": "POST",
+        "url": "MedicationRequest"
+      }
+    },
+    {
+      "fullUrl": "urn:uuid:e305ca2c-4b59-4e65-911e-ec0f7893e89c",
+      "resource": {
+        "resourceType": "MedicationRequest",
+        "status": "active",
+        "intent": "order",
+        "medicationCodeableConcept": {
+          "text": "Warfarin"
+        },
+        "subject": {
+          "reference": "urn:uuid:76f50cca-1ac4-4e73-ac35-9ce815b8a4d1"
+        },
+        "dosageInstruction": [
+          {
+            "text": "5 mg PO daily, adjust to maintain INR 2.0-3.0"
+          }
+        ]
+      },
+      "request": {
+        "method": "POST",
+        "url": "MedicationRequest"
+      }
+    },
+    {
+      "fullUrl": "urn:uuid:849b5384-a85b-4d5f-a348-81de422b6956",
+      "resource": {
+        "resourceType": "DocumentReference",
+        "status": "current",
+        "subject": {
+          "reference": "urn:uuid:76f50cca-1ac4-4e73-ac35-9ce815b8a4d1"
+        },
+        "type": {
+          "coding": [
+            {
+              "system": "http://loinc.org",
+              "code": "11488-4",
+              "display": "Consult note"
+            }
+          ]
+        },
+        "content": [
+          {
+            "attachment": {
+              "contentType": "text/plain",
+              "data": "UHQgYWRtaXR0ZWQgdG8gQ0NVIHMvcCBzeW5jb3BhbCBlcGlzb2RlIHdpdGggd29yc2VuaW5nIGR5c3BuZWEgb24gZXhlcnRpb24gKERPRSkgYW5kIGJpbGF0ZXJhbCBsb3dlciBleHRyZW1pdHkgZWRlbWEuIEVjaG8gcmV2ZWFscyBMVkVGIDI1JTsgcGVyc2lzdGVudCBBRmliIHcvIFJWUiBub3RlZCBvbiB0ZWxlbWV0cnksIHJlcXVpcmluZyBhZ2dyZXNzaXZlIHJhdGUgY29udHJvbC4gSW5pdGlhdGVkIElWIGRpdXJlc2lzLCB1cC10aXRyYXRlZCBjYXJ2ZWRpbG9sLCBhbmQgd2lsbCBtb25pdG9yIElOUiBjbG9zZWx5IG9uIHdhcmZhcmluLiBDYXJkaW9sb2d5IHdpbGwgZm9sbG93IGRhaWx5LCBhaW1pbmcgZm9yIGRpc2NoYXJnZSBvbmNlIGV1dm9sZW1pYyBhbmQgcmF0ZSBjb250cm9sbGVkLg=="
+            }
+          }
+        ]
+      },
+      "request": {
+        "method": "POST",
+        "url": "DocumentReference"
+      }
+    },
+    {
+      "fullUrl": "urn:uuid:a44ad44d-d9bf-4148-8b05-d441626d0705",
+      "resource": {
+        "resourceType": "Patient",
+        "name": [
+          {
+            "family": "Dubois",
+            "given": [
+              "Amina"
+            ]
+          }
+        ],
+        "gender": "female",
+        "birthDate": "1951-03-22"
+      },
+      "request": {
+        "method": "POST",
+        "url": "Patient"
+      }
+    },
+    {
+      "fullUrl": "urn:uuid:6727917b-dd91-4fb3-9dcf-f2d6b3757ae9",
+      "resource": {
+        "resourceType": "Condition",
+        "clinicalStatus": {
+          "coding": [
+            {
+              "system": "http://terminology.hl7.org/CodeSystem/condition-clinical",
+              "code": "active"
+            }
+          ]
+        },
+        "code": {
+          "coding": [
+            {
+              "system": "http://hl7.org/fhir/sid/icd-10",
+              "code": "J44.1",
+              "display": "Chronic Obstructive Pulmonary Disease with (acute) exacerbation"
+            }
+          ],
+          "text": "Chronic Obstructive Pulmonary Disease with (acute) exacerbation"
+        },
+        "subject": {
+          "reference": "urn:uuid:a44ad44d-d9bf-4148-8b05-d441626d0705"
+        }
+      },
+      "request": {
+        "method": "POST",
+        "url": "Condition"
+      }
+    },
+    {
+      "fullUrl": "urn:uuid:e7220625-2664-4d3c-815a-75e350841e6d",
+      "resource": {
+        "resourceType": "Condition",
+        "clinicalStatus": {
+          "coding": [
+            {
+              "system": "http://terminology.hl7.org/CodeSystem/condition-clinical",
+              "code": "active"
+            }
+          ]
+        },
+        "code": {
+          "coding": [
+            {
+              "system": "http://hl7.org/fhir/sid/icd-10",
+              "code": "J84.11",
+              "display": "Idiopathic Pulmonary Fibrosis"
+            }
+          ],
+          "text": "Idiopathic Pulmonary Fibrosis"
+        },
+        "subject": {
+          "reference": "urn:uuid:a44ad44d-d9bf-4148-8b05-d441626d0705"
+        }
+      },
+      "request": {
+        "method": "POST",
+        "url": "Condition"
+      }
+    },
+    {
+      "fullUrl": "urn:uuid:06d91317-a38c-4e4d-babb-86e74cc999f4",
+      "resource": {
+        "resourceType": "MedicationRequest",
+        "status": "active",
+        "intent": "order",
+        "medicationCodeableConcept": {
+          "text": "Trelegy Ellipta (fluticasone furoate/umeclidinium/vilanterol)"
+        },
+        "subject": {
+          "reference": "urn:uuid:a44ad44d-d9bf-4148-8b05-d441626d0705"
+        },
+        "dosageInstruction": [
+          {
+            "text": "1 inhalation PO QD"
+          }
+        ]
+      },
+      "request": {
+        "method": "POST",
+        "url": "MedicationRequest"
+      }
+    },
+    {
+      "fullUrl": "urn:uuid:bd8bcff0-a6ec-41ab-a80f-bd2f48d2f839",
+      "resource": {
+        "resourceType": "MedicationRequest",
+        "status": "active",
+        "intent": "order",
+        "medicationCodeableConcept": {
+          "text": "Prednisone"
+        },
+        "subject": {
+          "reference": "urn:uuid:a44ad44d-d9bf-4148-8b05-d441626d0705"
+        },
+        "dosageInstruction": [
+          {
+            "text": "40 mg PO QD x 5 days, then taper as directed"
+          }
+        ]
+      },
+      "request": {
+        "method": "POST",
+        "url": "MedicationRequest"
+      }
+    },
+    {
+      "fullUrl": "urn:uuid:bab6d57e-a264-4586-aa01-3842a547b3a1",
+      "resource": {
+        "resourceType": "MedicationRequest",
+        "status": "active",
+        "intent": "order",
+        "medicationCodeableConcept": {
+          "text": "Pirfenidone"
+        },
+        "subject": {
+          "reference": "urn:uuid:a44ad44d-d9bf-4148-8b05-d441626d0705"
+        },
+        "dosageInstruction": [
+          {
+            "text": "267 mg PO TID, titrate per protocol"
+          }
+        ]
+      },
+      "request": {
+        "method": "POST",
+        "url": "MedicationRequest"
+      }
+    },
+    {
+      "fullUrl": "urn:uuid:11b7c93c-d6a0-4cba-b2cb-587a379e6d9f",
+      "resource": {
+        "resourceType": "DocumentReference",
+        "status": "current",
+        "subject": {
+          "reference": "urn:uuid:a44ad44d-d9bf-4148-8b05-d441626d0705"
+        },
+        "type": {
+          "coding": [
+            {
+              "system": "http://loinc.org",
+              "code": "11488-4",
+              "display": "Consult note"
+            }
+          ]
+        },
+        "content": [
+          {
+            "attachment": {
+              "contentType": "text/plain",
+              "data": "UHQgaXMgYSA3MiB5L28gRiB3LyBzZXZlcmUgQ09QRCAmIElQRiBwcmVzZW50cyB0byBFRCBjL28gcHJvZ3Jlc3NpdmVseSB3b3JzZW5pbmcgZHlzcG5lYSAmIHByb2R1Y3RpdmUgY291Z2ggeCAzIGRheXMuIEEvUDogQUVDT1BEIHN1cGVyaW1wb3NlZCBvbiBJUEY7IGluaXRpYXRlZCBJViBTb2x1LU1lZHJvbCA2MG1nIFE2SCwgWm9zeW4gNC41ZyBJViBROEgsIGFuZCBCaVBBUC4gUGxhbjogQ29udGludWUgY3VycmVudCB0eCwgbW9uaXRvciBBQkdzICYgTzIgc2F0cyBjbG9zZWx5LCBhbmQgZi91IHcvIFB1bG0gaW4gMSB3ayBwb3N0LWRpc2NoYXJnZS4="
+            }
+          }
+        ]
+      },
+      "request": {
+        "method": "POST",
+        "url": "DocumentReference"
+      }
+    },
+    {
+      "fullUrl": "urn:uuid:bd261b1e-e68b-4844-9261-7de7c57b4732",
+      "resource": {
+        "resourceType": "Patient",
+        "name": [
+          {
+            "family": "Chen",
+            "given": [
+              "Chloe"
+            ]
+          }
+        ],
+        "gender": "male",
+        "birthDate": "1950-05-12"
+      },
+      "request": {
+        "method": "POST",
+        "url": "Patient"
+      }
+    },
+    {
+      "fullUrl": "urn:uuid:5a708df3-f4c1-431f-af7a-80c4a32e9051",
+      "resource": {
+        "resourceType": "Condition",
+        "clinicalStatus": {
+          "coding": [
+            {
+              "system": "http://terminology.hl7.org/CodeSystem/condition-clinical",
+              "code": "active"
+            }
+          ]
+        },
+        "code": {
+          "coding": [
+            {
+              "system": "http://hl7.org/fhir/sid/icd-10",
+              "code": "M05.80",
+              "display": "Severe Rheumatoid Arthritis with Joint Erosions"
+            }
+          ],
+          "text": "Severe Rheumatoid Arthritis with Joint Erosions"
+        },
+        "subject": {
+          "reference": "urn:uuid:bd261b1e-e68b-4844-9261-7de7c57b4732"
+        }
+      },
+      "request": {
+        "method": "POST",
+        "url": "Condition"
+      }
+    },
+    {
+      "fullUrl": "urn:uuid:62487c72-440c-4772-8f24-37cd1a252560",
+      "resource": {
+        "resourceType": "Condition",
+        "clinicalStatus": {
+          "coding": [
+            {
+              "system": "http://terminology.hl7.org/CodeSystem/condition-clinical",
+              "code": "active"
+            }
+          ]
+        },
+        "code": {
+          "coding": [
+            {
+              "system": "http://hl7.org/fhir/sid/icd-10",
+              "code": "M32.14",
+              "display": "Systemic Lupus Erythematosus with Renal Involvement"
+            }
+          ],
+          "text": "Systemic Lupus Erythematosus with Renal Involvement"
+        },
+        "subject": {
+          "reference": "urn:uuid:bd261b1e-e68b-4844-9261-7de7c57b4732"
+        }
+      },
+      "request": {
+        "method": "POST",
+        "url": "Condition"
+      }
+    },
+    {
+      "fullUrl": "urn:uuid:5ba623a4-b8e8-4240-96ae-3fb9197f819c",
+      "resource": {
+        "resourceType": "MedicationRequest",
+        "status": "active",
+        "intent": "order",
+        "medicationCodeableConcept": {
+          "text": "Methotrexate"
+        },
+        "subject": {
+          "reference": "urn:uuid:bd261b1e-e68b-4844-9261-7de7c57b4732"
+        },
+        "dosageInstruction": [
+          {
+            "text": "15 mg PO once weekly, with Folic Acid 1 mg PO daily"
+          }
+        ]
+      },
+      "request": {
+        "method": "POST",
+        "url": "MedicationRequest"
+      }
+    },
+    {
+      "fullUrl": "urn:uuid:b6ea899c-e6dc-4c37-8d96-b62a63c0da35",
+      "resource": {
+        "resourceType": "MedicationRequest",
+        "status": "active",
+        "intent": "order",
+        "medicationCodeableConcept": {
+          "text": "Adalimumab (Humira)"
+        },
+        "subject": {
+          "reference": "urn:uuid:bd261b1e-e68b-4844-9261-7de7c57b4732"
+        },
+        "dosageInstruction": [
+          {
+            "text": "40 mg SC every other week"
+          }
+        ]
+      },
+      "request": {
+        "method": "POST",
+        "url": "MedicationRequest"
+      }
+    },
+    {
+      "fullUrl": "urn:uuid:3e8e8efe-447e-4ad4-ab66-8e11388f1d9c",
+      "resource": {
+        "resourceType": "MedicationRequest",
+        "status": "active",
+        "intent": "order",
+        "medicationCodeableConcept": {
+          "text": "Prednisone"
+        },
+        "subject": {
+          "reference": "urn:uuid:bd261b1e-e68b-4844-9261-7de7c57b4732"
+        },
+        "dosageInstruction": [
+          {
+            "text": "5 mg PO daily, with calcium/Vit D supplementation"
+          }
+        ]
+      },
+      "request": {
+        "method": "POST",
+        "url": "MedicationRequest"
+      }
+    },
+    {
+      "fullUrl": "urn:uuid:370dd1ed-3421-4417-bf9d-3f8a9040f156",
+      "resource": {
+        "resourceType": "DocumentReference",
+        "status": "current",
+        "subject": {
+          "reference": "urn:uuid:bd261b1e-e68b-4844-9261-7de7c57b4732"
+        },
+        "type": {
+          "coding": [
+            {
+              "system": "http://loinc.org",
+              "code": "11488-4",
+              "display": "Consult note"
+            }
+          ]
+        },
+        "content": [
+          {
+            "attachment": {
+              "contentType": "text/plain",
+              "data": "UHQgcHJlc2VudHMgd2l0aCBhY3V0ZSBleGFjZXJiYXRpb24gb2YgUkEvU0xFLCBjL28gaW5jcmVhc2VkIGpvaW50IHBhaW4sIHN3ZWxsaW5nIGluIGJpbGF0ZXJhbCBNQ1BzIGFuZCBQSVBzLCBhbmQgd29yc2VuaW5nIGZhdGlndWUuIExhYnMgcGVuZGluZyBmb3IgRVNSLCBDUlAsIEFOQSwgYW5kIGNvbXBsZW1lbnQgbGV2ZWxzOyB3aWxsIGNvbnNpZGVyIGluY3JlYXNpbmcgUHJlZG5pc29uZSBhbmQgaW5pdGlhdGluZyBwdWxzZSBzdGVyb2lkIHRoZXJhcHkgaWYgc2lnbmlmaWNhbnQgZGlzZWFzZSBhY3Rpdml0eSBjb25maXJtZWQuIERpc2N1c3NlZCBkaXNlYXNlIG1vZGlmeWluZyBhbnRpLXJoZXVtYXRpYyBkcnVncyAoRE1BUkRzKSBhZGhlcmVuY2UgYW5kIGltcG9ydGFuY2Ugb2YgY2xvc2UgRi9VIHdpdGggUmhldW1hdG9sb2d5IGZvciBvbmdvaW5nIGRpc2Vhc2UgbWFuYWdlbWVudC4="
+            }
+          }
+        ]
+      },
+      "request": {
+        "method": "POST",
+        "url": "DocumentReference"
+      }
+    }
+  ]
+}
