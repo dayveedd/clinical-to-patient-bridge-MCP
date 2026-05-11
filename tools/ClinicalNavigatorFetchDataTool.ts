@@ -1,9 +1,10 @@
 // tools/ClinicalNavigatorFetchDataTool.ts
 //
 // [Agent 1 of 3] Clinical Navigator
-// Fetches FHIR data, extracts relevant fields, stores in server-side cache,
-// and returns a SHORT summary to the LLM. The Pharmacist and Empathy Engine
-// read from the cache — the LLM never has to echo this data.
+// Fetches FHIR data by patient ID (from SHARP JWT), extracts only relevant
+// fields, and stores compact data in server-side cache. Also fetches the
+// Patient resource to get the patient's name for the final brief.
+// Returns a SHORT summary (~50 tokens) so the LLM can proceed quickly.
 
 import { McpServer } from "@modelcontextprotocol/sdk/server/mcp";
 import { Request } from "express";
@@ -62,14 +63,22 @@ function extractReports(bundle: any): string[] {
     });
 }
 
+function extractPatientName(patientResource: any): string {
+  if (!patientResource?.name?.length) return "Patient";
+  const name = patientResource.name[0];
+  const given = name.given?.join(" ") || "";
+  const family = name.family || "";
+  return `${given} ${family}`.trim() || "Patient";
+}
+
 export const ClinicalNavigatorFetchDataToolInstance: IMcpTool = {
   registerTool: (server: McpServer, req: Request) => {
     server.tool(
       "clinical_navigator_fetch_data",
-      `[STEP 1 — Clinical Navigator Agent] MANDATORY first step. Fetches
-       all clinical data from the FHIR server. You MUST call this before
-       any other discharge tool. The other tools will REJECT if this has
-       not been called first. No arguments needed.`,
+      "[STEP 1] Clinical Navigator Agent. MANDATORY first step. " +
+        "Fetches clinical data from the FHIR server. " +
+        "Other tools will REJECT if this has not been called. " +
+        "No arguments needed.",
       {},
       async () => {
         const patientId = FhirUtilities.getPatientIdIfContextExists(req);
@@ -83,12 +92,14 @@ export const ClinicalNavigatorFetchDataToolInstance: IMcpTool = {
 
         try {
           const [
+            patientResource,
             conditionsBundle,
             reportsBundle,
             medRequestsBundle,
             medStatementsBundle,
             medAdminsBundle,
           ] = await Promise.all([
+            FhirClientInstance.read(req, `Patient/${patientId}`),
             FhirClientInstance.search(req, "Condition", [
               `patient=${patientId}`,
             ]),
@@ -106,6 +117,7 @@ export const ClinicalNavigatorFetchDataToolInstance: IMcpTool = {
             ]),
           ]);
 
+          const patientName = extractPatientName(patientResource);
           const conditions = extractConditions(conditionsBundle);
           const medications = [
             ...extractMedications(medRequestsBundle, "Rx"),
@@ -114,18 +126,20 @@ export const ClinicalNavigatorFetchDataToolInstance: IMcpTool = {
           ];
           const reports = extractReports(reportsBundle);
 
-          // Store in server-side cache for Pharmacist & Empathy Engine
-          storePatientData(patientId, { conditions, medications, reports });
+          storePatientData(patientId, {
+            patientName,
+            conditions,
+            medications,
+            reports,
+            translatedMedications: [],
+          });
 
-          // Return a SHORT summary — the LLM does NOT need the raw data
           const summary =
-            `Clinical Navigator fetched data for patient ${patientId}:\n` +
-            `• ${conditions.length} condition(s) found\n` +
-            `• ${medications.length} medication(s) found\n` +
-            `• ${reports.length} diagnostic report(s) found\n\n` +
-            (conditions.length + medications.length + reports.length === 0
-              ? "⚠️ No structured FHIR data found. Use the patient's uploaded clinical note from the conversation context instead when calling the Pharmacist and Empathy Engine."
-              : "Data is ready. Call pharmacist_translate_medications next.");
+            `Navigator: Fetched data for ${patientName}. ` +
+            `${conditions.length} condition(s), ` +
+            `${medications.length} medication(s), ` +
+            `${reports.length} report(s). ` +
+            "Call pharmacist_translate_medications next.";
 
           return McpUtilities.createTextResponse(summary);
         } catch (error) {

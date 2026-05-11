@@ -1,9 +1,10 @@
 // tools/EmpathyEngineComposeBriefTool.ts
 //
 // [Agent 3 of 3] Empathy Engine
-// Reads conditions and reports from the server-side cache (stored by
-// Navigator). Accepts the Pharmacist's translated medications as a single
-// short argument. Returns composition instructions for the final brief.
+// Reads ALL data from cache (conditions, translated medications, reports,
+// patient name) and generates the FULL discharge brief SERVER-SIDE.
+// Returns the complete brief as the tool response — the LLM just displays it.
+// This means the LLM only needs ~10 output tokens for the tool call itself.
 
 import { McpServer } from "@modelcontextprotocol/sdk/server/mcp";
 import { Request } from "express";
@@ -12,14 +13,82 @@ import { FhirUtilities } from "../fhir-utilities";
 import { McpUtilities } from "../mcp-utilities";
 import { getPatientData } from "../pipeline-state";
 
+function simplifyCondition(condition: string): string {
+  // Remove the (active/inactive) status for patient-facing text
+  return condition.replace(/\s*\(active\)/gi, "")
+                  .replace(/\s*\(inactive\)/gi, "")
+                  .replace(/\s*\(resolved\)/gi, "")
+                  .trim();
+}
+
+function generateBrief(
+  patientName: string,
+  conditions: string[],
+  medications: string[],
+  reports: string[],
+): string {
+  const condList = conditions.length > 0
+    ? conditions.map(simplifyCondition).map(c => `  • ${c}`).join("\n")
+    : "  • Your care team will discuss your conditions with you.";
+
+  const medList = medications.length > 0
+    ? medications.map((m, i) => `  ${i + 1}. ${m}`).join("\n")
+    : "  • No medications were recorded. Check with your doctor.";
+
+  const reportList = reports.length > 0
+    ? reports.map(r => `  • ${r}`).join("\n")
+    : "  • No test results to report at this time.";
+
+  return [
+    `# Discharge Instructions`,
+    ``,
+    `## 👋 Welcome Home`,
+    `Welcome back home, ${patientName}! We are so glad you are feeling better.`,
+    `This letter explains what happened during your hospital stay and how to`,
+    `take care of yourself at home. Please read it carefully.`,
+    ``,
+    `## 🏥 Why You Were Here`,
+    `You were in the hospital because of these health issues:`,
+    condList,
+    ``,
+    `## 💊 Your Medications`,
+    `Here are the medications you need to take. Please follow the instructions exactly:`,
+    medList,
+    ``,
+    `## 📋 What Your Tests Showed`,
+    reportList,
+    ``,
+    `## 🏠 Taking Care of Yourself`,
+    `  • Take all your medications as described above.`,
+    `  • Drink plenty of water and eat healthy meals.`,
+    `  • Get plenty of rest, but try short walks when you feel up to it.`,
+    `  • Keep all your follow-up appointments.`,
+    `  • Ask a family member or friend to help you during recovery.`,
+    ``,
+    `## ⚠️ When to Call Your Doctor`,
+    `Call your doctor right away if you notice:`,
+    `  • Fever above 101°F (38.3°C)`,
+    `  • Sudden shortness of breath or chest pain`,
+    `  • Severe pain that does not go away`,
+    `  • Swelling, redness, or warmth at any wound site`,
+    `  • Any new symptoms that worry you`,
+    ``,
+    `## 💙 A Note from Your Care Team`,
+    `${patientName}, we are proud of how strong you have been. Recovery takes`,
+    `time, so please be patient with yourself. We are here for you every step`,
+    `of the way. Do not hesitate to call us if you need anything at all.`,
+    ``,
+    `Wishing you a smooth and speedy recovery! 💛`,
+  ].join("\n");
+}
+
 export const EmpathyEngineComposeBriefToolInstance: IMcpTool = {
   registerTool: (server: McpServer, req: Request) => {
     server.tool(
       "empathy_engine_compose_brief",
-      `[STEP 3 — Empathy Engine Agent] MUST be called after BOTH step 1
-       (clinical_navigator_fetch_data) AND step 2
-       (pharmacist_translate_medications). Will REJECT otherwise. Composes
-       the final patient discharge brief.`,
+      "[STEP 3] Empathy Engine Agent. MUST be called after steps 1 and 2. " +
+        "Generates the final patient discharge brief. " +
+        "No arguments needed.",
       {},
       async () => {
         const patientId = FhirUtilities.getPatientIdIfContextExists(req);
@@ -34,49 +103,22 @@ export const EmpathyEngineComposeBriefToolInstance: IMcpTool = {
 
         if (!cached) {
           return McpUtilities.createTextResponse(
-            "REJECTED: You must call clinical_navigator_fetch_data FIRST, " +
-              "then pharmacist_translate_medications SECOND, before calling " +
-              "this tool. Start from step 1.",
+            "REJECTED: Call clinical_navigator_fetch_data first, " +
+              "then pharmacist_translate_medications. Start from step 1.",
             { isError: true },
           );
         }
 
-        const conditions =
-          cached.conditions.length > 0
-            ? cached.conditions.join("; ")
-            : "See patient's clinical note for conditions.";
-        const reports =
-          cached.reports.length > 0
-            ? cached.reports.join("; ")
-            : "No diagnostic reports available.";
+        const brief = generateBrief(
+          cached.patientName,
+          cached.conditions,
+          cached.translatedMedications.length > 0
+            ? cached.translatedMedications
+            : cached.medications,
+          cached.reports,
+        );
 
-        const medications =
-          cached.medications.length > 0
-            ? cached.medications.map((m, i) => `${i + 1}. ${m}`).join("\n")
-            : "No structured medications in FHIR. Use any medications from the patient's clinical note.";
-
-        const output =
-          "EMPATHY ENGINE — COMPOSE DISCHARGE BRIEF:\n" +
-          "Write at 6th-grade level. Short sentences. No jargon.\n\n" +
-          "STEP A — First, translate each medication below into plain English:\n" +
-          "For each: name (generic+brand), purpose, how to take " +
-          "(PO=by mouth, IV=IV line, BID=2x/day, TID=3x/day, " +
-          "Q6H=every 6h, Q8H=every 8h, PRN=as needed), " +
-          "side effects (2-3 plain-language), when to call doctor.\n\n" +
-          "MEDICATIONS TO TRANSLATE:\n" +
-          medications + "\n\n" +
-          "STEP B — Then write the full discharge brief with these sections:\n" +
-          "1. 👋 Welcome Home (warm greeting)\n" +
-          "2. 🏥 Why You Were Here (conditions in simple terms)\n" +
-          "3. 💊 Your Medications (use translations from Step A)\n" +
-          "4. 📋 What Your Tests Showed (reports in plain terms)\n" +
-          "5. 🏠 Taking Care of Yourself (3-5 tips)\n" +
-          "6. ⚠️ When to Call Your Doctor (specific signs)\n" +
-          "7. 💙 Note from Your Care Team (encouraging close)\n\n" +
-          "CONDITIONS: " + conditions + "\n\n" +
-          "REPORTS: " + reports;
-
-        return McpUtilities.createTextResponse(output);
+        return McpUtilities.createTextResponse(brief);
       },
     );
   },

@@ -3,19 +3,13 @@
 // Module-level in-memory cache for passing data between the 3 agent tools
 // within a discharge workflow WITHOUT requiring the LLM to echo data as
 // tool call arguments (which exhausts PO's output token budget).
-//
-// Flow:
-//   1. Navigator fetches FHIR data → stores in cache → returns short summary
-//   2. Pharmacist reads meds from cache → returns compact instructions
-//   3. Empathy Engine reads all data from cache → returns brief instructions
-//
-// Cache entries auto-expire after 5 minutes to prevent stale data.
 
 export interface CachedPatientData {
+  patientName: string;
   conditions: string[];
   medications: string[];
   reports: string[];
-  pharmacistTranslation?: string;  // Set by Chief Resident via Empathy Engine arg
+  translatedMedications: string[];  // Filled by Pharmacist server-side
   timestamp: number;
 }
 
@@ -44,7 +38,18 @@ export function getPatientData(
   return entry;
 }
 
-/** Clean up expired entries (called periodically). */
+/** Update translations in cache. */
+export function storeTranslations(
+  patientId: string,
+  translations: string[],
+): void {
+  const entry = cache.get(patientId);
+  if (entry) {
+    entry.translatedMedications = translations;
+  }
+}
+
+/** Clean up expired entries. */
 export function pruneExpiredEntries(): void {
   const now = Date.now();
   for (const [key, entry] of cache.entries()) {
@@ -54,5 +59,4 @@ export function pruneExpiredEntries(): void {
   }
 }
 
-// Prune every 2 minutes
 setInterval(pruneExpiredEntries, 2 * 60 * 1000);
